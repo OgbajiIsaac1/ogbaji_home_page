@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Connect With Us | YourCompany</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Google Fonts (same as rest of site) -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font-Awesome for social icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Anime.js (already used on site) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+  <style>
+    :root{
+      --navy: #1a2332;
+      --gold: #d4af37;
+      --teal: #4a9b8e;
+      --light: #f8f9fa;
+      --charcoal: #2c3e50;
+      --space: 8px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:'Inter',sans-serif;
+      background:var(--light);
+      color:var(--charcoal);
+      line-height:1.6;
+    }
+    header{
+      background:var(--navy);
+      padding:calc(var(--space)*4) 0;
+      text-align:center;
+    }
+    header h1{
+      font-family:'Playfair Display',serif;
+      color:var(--gold);
+      font-size:2.5rem;
+      letter-spacing:1px;
+    }
+    header p{color:var(--light);margin-top:var(--space);}
+    section{
+      max-width:1100px;
+      margin:0 auto;
+      padding:calc(var(--space)*6) calc(var(--space)*3);
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:calc(var(--space)*4);
+    }
+    .card{
+      background:#fff;
+      border-radius:8px;
+      padding:calc(var(--space)*5);
+      text-align:center;
+      box-shadow:0 4px 12px rgba(0,0,0,.08);
+      transition:transform .3s,box-shadow .3s;
+    }
+    .card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 8px 20px rgba(0,0,0,.12);
+    }
+    .card i{
+      font-size:3rem;
+      color:var(--teal);
+      margin-bottom:var(--space);
+    }
+    .card h3{margin-bottom:var(--space);}
+    .card a{
+      display:inline-block;
+      margin-top:calc(var(--space)*2);
+      padding:calc(var(--space)*1.5) calc(var(--space)*3);
+      background:var(--gold);
+      color:#fff;
+      text-decoration:none;
+      border-radius:4px;
+      font-weight:600;
+      transition:background .3s;
+    }
+    .card a:hover{background:var(--navy);}
+    footer{
+      text-align:center;
+      padding:calc(var(--space)*4) 0;
+      font-size:.85rem;
+      color:var(--charcoal);
+    }
+    /* entrance animation */
+    .card{opacity:0;transform:translateY(30px);}
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Let's Stay Connected</h1>
+  <p>Follow us for updates, insights and behind-the-scenes moments.</p>
+</header>
+
+<section>
+  <div class="grid" id="social-grid">
+    <!-- 1 -->
+    <div class="card">
+      <i class="fab fa-linkedin"></i>
+      <h3>LinkedIn</h3>
+      <p>Professional updates and industry articles.</p>
+      <a href="https://linkedin.com/company/yourcompany" target="_blank" rel="noopener">Follow</a>
+    </div>
+
+    <!-- 2 -->
+    <div class="card">
+      <i class="fab fa-twitter"></i>
+      <h3>Twitter</h3>
+      <p>Quick news and real-time conversations.</p>
+      <a href="https://twitter.com/yourhandle" target="_blank" rel="noopener">Follow</a>
+    </div>
+
+    <!-- 3 -->
+    <div class="card">
+      <i class="fab fa-instagram"></i>
+      <h3>Instagram</h3>
+      <p>Visual stories and team snapshots.</p>
+      <a href="https://instagram.com/yourhandle" target="_blank" rel="noopener">Follow</a>
+    </div>
+
+    <!-- 4 -->
+    <div class="card">
+      <i class="fab fa-facebook"></i>
+      <h3>Facebook</h3>
+      <p>Community updates and event announcements.</p>
+      <a href="https://facebook.com/yourpage" target="_blank" rel="noopener">Follow</a>
+    </div>
+
+    <!-- 5 -->
+    <div class="card">
+      <i class="fab fa-youtube"></i>
+      <h3>YouTube</h3>
+      <p>Tutorials, webinars and product demos.</p>
+      <a href="https://youtube.com/c/yourchannel" target="_blank" rel="noopener">Subscribe</a>
+    </div>
+
+    <!-- 6 -->
+    <div class="card">
+      <i class="fab fa-github"></i>
+      <h3>GitHub</h3>
+      <p>Open-source projects and code snippets.</p>
+      <a href="https://github.com/yourusername" target="_blank" rel="noopener">Follow</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © <span id="yr"></span> YourCompany. All rights reserved.
+</footer>
+
+<script>
+  /* staggered fade-in (Anime.js) */
+  anime({
+    targets: '#social-grid .card',
+    opacity: [0, 1],
+    translateY: [30, 0],
+    delay: anime.stagger(100, {start: 200}),
+    duration: 700,
+    easing: 'easeOutQuad'
+  });
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
