@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Business Solutions | Innovate. Transform. Succeed.</title>
+    <meta name="description" content="Transform your business with our professional solutions. Expert consulting, innovative strategies, and proven results to drive your success forward.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- External Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#1a2332',
+                        'secondary': '#d4af37',
+                        'accent': '#4a9b8e',
+                        'neutral': '#f8f9fa',
+                        'text': '#2c3e50'
+                    },
+                    fontFamily: {
+                        'display': ['Playfair Display', 'serif'],
+                        'body': ['Inter', 'sans-serif'],
+                        'mono': ['Source Code Pro', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(26, 35, 50, 0.9), rgba(74, 155, 142, 0.8)), url('resources/hero-image.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #d4af37, #4a9b8e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        #particles-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #d4af37;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="font-body text-text bg-neutral">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="text-2xl font-display font-bold text-primary">
+                        Pro<span class="gradient-text">Solutions</span>
+                    </div>
+                </div>
+                
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="nav-link active text-primary hover:text-secondary font-medium">Home</a>
+                        <a href="about.html" class="nav-link text-primary hover:text-secondary font-medium">About</a>
+                        <a href="services.html" class="nav-link text-primary hover:text-secondary font-medium">Services</a>
+                        <a href="contact.html" class="nav-link text-primary hover:text-secondary font-medium">Contact</a>
+                    </div>
+                </div>
+                
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-primary hover:text-secondary">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 text-primary hover:text-secondary font-medium">Home</a>
+                <a href="about.html" class="block px-3 py-2 text-primary hover:text-secondary font-medium">About</a>
+                <a href="services.html" class="block px-3 py-2 text-primary hover:text-secondary font-medium">Services</a>
+                <a href="contact.html" class="block px-3 py-2 text-primary hover:text-secondary font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-bg min-h-screen flex items-center justify-center relative overflow-hidden">
+        <canvas id="particles-canvas"></canvas>
+        <div class="hero-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+            <div class="floating-element mb-8">
+                <h1 class="text-5xl md:text-7xl font-display font-bold mb-6">
+                    <span id="typed-text"></span>
+                </h1>
+            </div>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed">
+                Transform your business with innovative solutions that drive growth, efficiency, and success in today's competitive marketplace.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="services.html" class="bg-secondary hover:bg-yellow-600 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105">
+                    Explore Services
+                </a>
+                <a href="contact.html" class="border-2 border-white hover:bg-white hover:text-primary text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300">
+                    Get Started Today
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Overview -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-display font-bold text-primary mb-6">
+                    Our <span class="gradient-text">Services</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Comprehensive business solutions designed to accelerate your growth and maximize your potential in the digital age.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card-hover bg-white rounded-xl shadow-lg p-8 border border-gray-100 reveal">
+                    <div class="w-16 h-16 bg-secondary/10 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-display font-semibold text-primary mb-4">Business Strategy</h3>
+                    <p class="text-gray-600 mb-6">Strategic planning and consulting to help your business reach new heights with data-driven insights and proven methodologies.</p>
+                    <a href="services.html#strategy" class="text-secondary font-semibold hover:text-yellow-600 transition-colors">Learn More →</a>
+                </div>
+                
+                <div class="card-hover bg-white rounded-xl shadow-lg p-8 border border-gray-100 reveal">
+                    <div class="w-16 h-16 bg-accent/10 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-display font-semibold text-primary mb-4">Digital Transformation</h3>
+                    <p class="text-gray-600 mb-6">Modernize your operations with cutting-edge technology solutions that streamline processes and enhance productivity.</p>
+                    <a href="services.html#digital" class="text-secondary font-semibold hover:text-yellow-600 transition-colors">Learn More →</a>
+                </div>
+                
+                <div class="card-hover bg-white rounded-xl shadow-lg p-8 border border-gray-100 reveal">
+                    <div class="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-display font-semibold text-primary mb-4">Team Development</h3>
+                    <p class="text-gray-600 mb-6">Build high-performing teams with our comprehensive training programs and leadership development solutions.</p>
+                    <a href="services.html#team" class="text-secondary font-semibold hover:text-yellow-600 transition-colors">Learn More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Gallery -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-display font-bold text-primary mb-6">
+                    Our <span class="gradient-text">Work</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Explore our portfolio of successful projects and see how we've helped businesses transform and thrive.
+                </p>
+            </div>
+            
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="filter-btn active bg-secondary text-white px-6 py-3 rounded-lg font-semibold transition-all" data-filter="all">All Projects</button>
+                <button class="filter-btn bg-white text-primary hover:bg-secondary hover:text-white px-6 py-3 rounded-lg font-semibold transition-all" data-filter="strategy">Strategy</button>
+                <button class="filter-btn bg-white text-primary hover:bg-secondary hover:text-white px-6 py-3 rounded-lg font-semibold transition-all" data-filter="digital">Digital</button>
+                <button class="filter-btn bg-white text-primary hover:bg-secondary hover:text-white px-6 py-3 rounded-lg font-semibold transition-all" data-filter="team">Team</button>
+            </div>
+            
+            <!-- Portfolio Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-grid">
+                <div class="portfolio-item card-hover bg-white rounded-xl shadow-lg overflow-hidden reveal" data-category="strategy">
+                    <img src="resources/office-1.jpg" alt="Strategic Planning Project" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-display font-semibold text-primary mb-2">Global Expansion Strategy</h3>
+                        <p class="text-gray-600 mb-4">Developed comprehensive market entry strategy for Fortune 500 company.</p>
+                        <span class="inline-block bg-secondary/10 text-secondary px-3 py-1 rounded-full text-sm font-medium">Strategy</span>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item card-hover bg-white rounded-xl shadow-lg overflow-hidden reveal" data-category="digital">
+                    <img src="resources/office-2.jpg" alt="Digital Transformation Project" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-display font-semibold text-primary mb-2">Digital Workflow Automation</h3>
+                        <p class="text-gray-600 mb-4">Implemented cutting-edge automation solutions reducing costs by 40%.</p>
+                        <span class="inline-block bg-accent/10 text-accent px-3 py-1 rounded-full text-sm font-medium">Digital</span>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item card-hover bg-white rounded-xl shadow-lg overflow-hidden reveal" data-category="team">
+                    <img src="resources/team-1.jpg" alt="Team Development Project" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-display font-semibold text-primary mb-2">Leadership Excellence Program</h3>
+                        <p class="text-gray-600 mb-4">Transformed management team with comprehensive leadership training.</p>
+                        <span class="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">Team</span>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item card-hover bg-white rounded-xl shadow-lg overflow-hidden reveal" data-category="strategy">
+                    <img src="resources/office-3.jpg" alt="Business Consulting Project" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-display font-semibold text-primary mb-2">Operational Excellence</h3>
+                        <p class="text-gray-600 mb-4">Streamlined operations resulting in 25% efficiency improvement.</p>
+                        <span class="inline-block bg-secondary/10 text-secondary px-3 py-1 rounded-full text-sm font-medium">Strategy</span>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item card-hover bg-white rounded-xl shadow-lg overflow-hidden reveal" data-category="digital">
+                    <img src="resources/office-4.jpg" alt="Technology Implementation" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-display font-semibold text-primary mb-2">Cloud Infrastructure</h3>
+                        <p class="text-gray-600 mb-4">Migrated legacy systems to modern cloud architecture.</p>
+                        <span class="inline-block bg-accent/10 text-accent px-3 py-1 rounded-full text-sm font-medium">Digital</span>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item card-hover bg-white rounded-xl shadow-lg overflow-hidden reveal" data-category="team">
+                    <img src="resources/team-2.jpg" alt="Team Building Project" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-display font-semibold text-primary mb-2">Cross-functional Collaboration</h3>
+                        <p class="text-gray-600 mb-4">Built high-performing cross-functional teams across multiple departments.</p>
+                        <span class="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">Team</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics -->
+    <section class="py-20 bg-primary text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 text-center">
+                <div class="reveal">
+                    <div class="text-4xl md:text-5xl font-display font-bold text-secondary mb-2" data-count="150">0</div>
+                    <p class="text-lg">Successful Projects</p>
+                </div>
+                <div class="reveal">
+                    <div class="text-4xl md:text-5xl font-display font-bold text-secondary mb-2" data-count="98">0</div>
+                    <p class="text-lg">Client Satisfaction %</p>
+                </div>
+                <div class="reveal">
+                    <div class="text-4xl md:text-5xl font-display font-bold text-secondary mb-2" data-count="50">0</div>
+                    <p class="text-lg">Expert Team Members</p>
+                </div>
+                <div class="reveal">
+                    <div class="text-4xl md:text-5xl font-display font-bold text-secondary mb-2" data-count="25">0</div>
+                    <p class="text-lg">Years Experience</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 bg-secondary text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl md:text-5xl font-display font-bold mb-6 reveal">
+                Ready to Transform Your Business?
+            </h2>
+            <p class="text-xl mb-8 reveal">
+                Join hundreds of successful companies who have trusted us with their business transformation journey.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center reveal">
+                <a href="contact.html" class="bg-white text-secondary hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105">
+                    Start Your Journey
+                </a>
+                <a href="about.html" class="border-2 border-white hover:bg-white hover:text-secondary text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300">
+                    Learn More About Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="text-3xl font-display font-bold mb-4">
+                    Pro<span class="text-secondary">Solutions</span>
+                </div>
+                <p class="text-gray-400 mb-8 max-w-2xl mx-auto">
+                    Transforming businesses through innovative solutions and strategic expertise. Your success is our mission.
+                </p>
+                <div class="border-t border-gray-700 pt-8">
+                    <p class="text-gray-400">
+                        © 2025 ProSolutions. All rights reserved. | Professional Business Solutions
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>

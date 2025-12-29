@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | ProSolutions - Business Consulting & Transformation</title>
+    <meta name="description" content="Comprehensive business services including strategy consulting, digital transformation, and team development. Expert solutions for sustainable growth.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- External Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#1a2332',
+                        'secondary': '#d4af37',
+                        'accent': '#4a9b8e',
+                        'neutral': '#f8f9fa',
+                        'text': '#2c3e50'
+                    },
+                    fontFamily: {
+                        'display': ['Playfair Display', 'serif'],
+                        'body': ['Inter', 'sans-serif'],
+                        'mono': ['Source Code Pro', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #d4af37, #4a9b8e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #d4af37;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .service-filter {
+            transition: all 0.3s ease;
+        }
+        
+        .service-filter.active {
+            background-color: #d4af37;
+            color: white;
+        }
+        
+        .service-item {
+            transition: all 0.3s ease;
+        }
+        
+        .service-item.hidden {
+            opacity: 0;
+            transform: scale(0.8);
+            pointer-events: none;
+        }
+        
+        .pricing-card {
+            transition: all 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .pricing-card.featured {
+            border: 2px solid #d4af37;
+            transform: scale(1.05);
+        }
+        
+        .process-step {
+            position: relative;
+        }
+        
+        .process-step::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -2rem;
+            width: 2rem;
+            height: 2px;
+            background: #d4af37;
+            transform: translateY(-50%);
+        }
+        
+        .process-step:last-child::after {
+            display: none;
+        }
+    </style>
+</head>
+<body class="font-body text-text bg-neutral">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="text-2xl font-display font-bold text-primary">
+                        Pro<span class="gradient-text">Solutions</span>
+                    </div>
+                </div>
+                
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="nav-link text-primary hover:text-secondary font-medium">Home</a>
+                        <a href="about.html" class="nav-link text-primary hover:text-secondary font-medium">About</a>
+                        <a href="services.html" class="nav-link active text-primary hover:text-secondary font-medium">Services</a>
+                        <a href="contact.html" class="nav-link text-primary hover:text-secondary font-medium">Contact</a>
+                    </div>
+                </div>
+                
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-primary hover:text-secondary">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 text-primary hover:text-secondary font-medium">Home</a>
+                <a href="about.html" class="block px-3 py-2 text-primary hover:text-secondary font-medium">About</a>
+                <a href="services.html" class="block px-3 py-2 text-primary hover:text-secondary font-medium">Services</a>
+                <a href="contact.html" class="block px-3 py-2 text-primary hover:text-secondary font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-16 bg-gradient-to-br from-primary to-accent text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-5xl md:text-6xl font-display font-bold mb-6 reveal">
+                Our <span class="text-secondary">Services</span>
+            </h1>
+            <p class="text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed reveal">
+                Comprehensive business solutions designed to accelerate your growth, enhance efficiency, and drive sustainable success in today's competitive marketplace.
+            </p>
+        </div>
+    </section>
+
+    <!-- Service Categories -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="service-filter active bg-secondary text-white px-8 py-3 rounded-lg font-semibold transition-all" data-filter="all">All Services</button>
+                <button class="service-filter bg-gray-100 text-primary hover:bg-secondary hover:text-white px-8 py-3 rounded-lg font-semibold transition-all" data-filter="strategy">Strategy</button>
+                <button class="service-filter bg-gray-100 text-primary hover:bg-secondary hover:text-white px-8 py-3 rounded-lg font-semibold transition-all" data-filter="digital">Digital</button>
+                <button class="service-filter bg-gray-100 text-primary hover:bg-secondary hover:text-white px-8 py-3 rounded-lg font-semibold transition-all" data-filter="team">Team</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="pb-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="services-grid">
+                <!-- Business Strategy Services -->
+                <div class="service-item card-hover bg-white rounded-xl shadow-lg p-8 border border-gray-100 reveal" data-category="strategy" id="strategy">
+                    <div class="w-16 h-16 bg-secondary/10 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-display font-semibold text-primary mb-4">Strategic Planning</h3>
+                    <p class="text-gray-600 mb-6">Comprehensive strategic planning services that align your business goals with actionable roadmaps for sustainable growth and competitive advantage.</p>
+                    <ul class="text-sm text-gray-600 space-y-2 mb-6">
+                        <li>• Market analysis and competitive positioning</li>
+                        <li>• Growth strategy development</li>
+                        <li>• Risk assessment and mitigation</li>
+                        <li>• Performance metrics and KPI design</li>
+                    </ul>
+                    <div class="flex justify-between items-center">
+                        <span class="text-2xl font-bold text-secondary">From $5,000</span>
+                        <a href="contact.html" class="bg-secondary hover:bg-yellow-600 text-white px-6 py-2 rounded-lg font-semibold transition-colors">Get Quote</a>
+                    </div>
+                </div>
+
+                <div class="service-item card-hover bg-white rounded-xl shadow-lg p-8 border border-gray-100 reveal" data-category="strategy">
+                    <div class="w-16 h-16 bg-secondary/10 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-display font-semibold text-primary mb-4">Market Entry Strategy</h3>
+                    <p class="text-gray-600 mb-6">Expert guidance for entering new markets, whether geographic expansion or launching new products and services.</p>
+                    <ul class="text-sm text-gray-600 space-y-2 mb-6">
+                        <li>• Market research and opportunity analysis</li>
+                        <li>• Entry mode selection and implementation</li>
+                        <li>• Go-to-market strategy development</li>
+                        <li>• Partnership and alliance building</li>
+                    </ul>
+                    <div class="flex justify-between items-center">
+                        <span class="text-2xl font-bold text-secondary">From $8,000</span>
+                        <a href="contact.html" class="bg-secondary hover:bg-yellow-600 text-white px-6 py-2 rounded-lg font-semibold transition-colors">Get Quote</a>
+                    </div>
+                </div>
+
+                <div class="service-item card-hover bg-white rounded-xl shadow-lg p-8 border border-gray-100 reveal" data-category="strategy">
+                    <div class="w-16 h-16 bg-secondary/10 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-display font-semibold text-primary mb-4">Performance Optimization</h3>
+                    <p class="text-gray-600 mb-6">Data-driven approach to improving operational efficiency and maximizing business performance across all departments.</p>
+                    <ul class="text-sm text-gray-600 space-y-2 mb-6">
+                        <li>• Process analysis and optimization</li>
+                        <li>• Cost reduction strategies</li>
+                        <li>• Performance measurement systems</li>
+                        <li>• Continuous improvement frameworks</li>
+                    </ul>
+                    <div class="flex justify-between items-center">
+                        <span class="text-2xl font-bold text-secondary">From $6,000</span>
+                        <a href="contact.html" class="bg-secondary hover:bg-yellow-600 text-white px-6 py-2 rounded-lg font-semibold transition-colors">Get Quote</a>
+                    </div>
+                </div>
+
+                <!-- Digital Transformation Services -->
+                <div class="service-item card-hover bg-white rounded-xl shadow-lg p-8 border border-gray-100 reveal" data-category="digital" id="digital">
+                    <div class="w-16 h-16 bg-accent/10 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-display font-semibold text-primary mb-4">Digital Transformation</h3>
+                    <p class="text-gray-600 mb-6">Complete digital modernization services to help your business leverage technology for competitive advantage and operational excellence.</p>
+                    <ul class="text-sm text-gray-600 space-y-2 mb-6">
+                        <li>• Digital strategy and roadmap development</li>
+                        <li>• Technology assessment and selection</li>
+                        <li>• Process automation and optimization</li>
+                        <li>• Change management and training</li>
+                    </ul>
+                    <div class="flex justify-between items-center">
+                        <span class="text-2xl font-bold text-secondary">From $10,000</span>
+                        <a href="contact.html" class="bg-secondary hover:bg-yellow-600 text-white px-6 py-2 rounded-lg font-semibold transition-colors">Get Quote</a>
+                    </div>
+                </div>
+
+                <div class="service-item card-hover bg-white rounded-xl shadow-lg p-8 border border-gray-100 reveal" data-category="digital">
+                    <div class="w-16 h-16 bg-accent/10 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-display font-semibold text-primary mb-4">Cloud Migration</h3>
+                    <p class="text-gray-600 mb-6">Seamless migration of your business systems to cloud infrastructure, ensuring security, scalability, and cost optimization.</p>
+                    <ul class="text-sm text-gray-600 space-y-2 mb-6">
+                        <li>• Cloud readiness assessment</li>
+                        <li>• Migration strategy and planning</li>
+                        <li>• Implementation and deployment</li>
+                        <li>• Security and compliance setup</li>
+                    </ul>
+                    <div class="flex justify-between items-center">
+                        <span class="text-2xl font-bold text-secondary">From $12,000</span>
+                        <a href="contact.html" class="bg-secondary hover:bg-yellow-600 text-white px-6 py-2 rounded-lg font-semibold transition-colors">Get Quote</a>
+                    </div>
+                </div>
+
+                <div class="service-item card-hover bg-white rounded-xl shadow-lg p-8 border border-gray-100 reveal" data-category="digital">
+                    <div class="w-16 h-16 bg-accent/10 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-display font-semibold text-primary mb-4">Cybersecurity Consulting</h3>
+                    <p class="text-gray-600 mb-6">Comprehensive security assessments and implementation of robust cybersecurity frameworks to protect your business assets.</p>
+                    <ul class="text-sm text-gray-600 space-y-2 mb-6">
+                        <li>• Security risk assessment and audit</li>
+                        <li>• Security framework implementation</li>
+                        <li>• Employee training and awareness</li>
+                        <li>• Incident response planning</li>
+                    </ul>
+                    <div class="flex justify-between items-center">
+                        <span class="text-2xl font-bold text-secondary">From $7,000</span>
+                        <a href="contact.html" class="bg-secondary hover:bg-yellow-600 text-white px-6 py-2 rounded-lg font-semibold transition-colors">Get Quote</a>
+                    </div>
+                </div>
+
+                <!-- Team Development Services -->
+                <div class="service-item card-hover bg-white rounded-xl shadow-lg p-8 border border-gray-100 reveal" data-category="team" id="team">
+                    <div class="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-display font-semibold text-primary mb-4">Leadership Development</h3>
+                    <p class="text-gray-600 mb-6">Comprehensive leadership training programs designed to build high-performing teams and effective management capabilities.</p>
+                    <ul class="text-sm text-gray-600 space-y-2 mb-6">
+                        <li>• Executive coaching and mentoring</li>
+                        <li>• Leadership assessment and development</li>
+                        <li>• Team building and collaboration</li>
+                        <li>• Change management training</li>
+                    </ul>
+                    <div class="flex justify-between items-center">
+                        <span class="text-2xl font-bold text-secondary">From $4,000</span>
+                        <a href="contact.html" class="bg-secondary hover:bg-yellow-600 text-white px-6 py-2 rounded-lg font-semibold transition-colors">Get Quote</a>
+                    </div>
+                </div>
+
+                <div class="service-item card-hover bg-white rounded-xl shadow-lg p-8 border border-gray-100 reveal" data-category="team">
+                    <div class="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-display font-semibold text-primary mb-4">Skills Training</h3>
+                    <p class="text-gray-600 mb-6">Targeted training programs to enhance specific skills and capabilities across your organization for improved performance.</p>
+                    <ul class="text-sm text-gray-600 space-y-2 mb-6">
+                        <li>• Technical skills development</li>
+                        <li>• Communication and presentation</li>
+                        <li>• Project management certification</li>
+                        <li>• Digital literacy programs</li>
+                    </ul>
+                    <div class="flex justify-between items-center">
+                        <span class="text-2xl font-bold text-secondary">From $3,000</span>
+                        <a href="contact.html" class="bg-secondary hover:bg-yellow-600 text-white px-6 py-2 rounded-lg font-semibold transition-colors">Get Quote</a>
+                    </div>
+                </div>
+
+                <div class="service-item card-hover bg-white rounded-xl shadow-lg p-8 border border-gray-100 reveal" data-category="team">
+                    <div class="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-display font-semibold text-primary mb-4">Organizational Design</h3>
+                    <p class="text-gray-600 mb-6">Strategic organizational restructuring and design services to optimize team structure and improve operational effectiveness.</p>
+                    <ul class="text-sm text-gray-600 space-y-2 mb-6">
+                        <li>• Organizational structure analysis</li>
+                        <li>• Role definition and optimization</li>
+                        <li>• Workflow and process design</li>
+                        <li>• Performance management systems</li>
+                    </ul>
+                    <div class="flex justify-between items-center">
+                        <span class="text-2xl font-bold text-secondary">From $8,000</span>
+                        <a href="contact.html" class="bg-secondary hover:bg-yellow-600 text-white px-6 py-2 rounded-lg font-semibold transition-colors">Get Quote</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-display font-bold text-primary mb-6">
+                    Our <span class="gradient-text">Process</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    A proven methodology that ensures consistent results and maximum value delivery for every client engagement.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="process-step text-center reveal">
+                    <div class="w-20 h-20 bg-secondary rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-2xl font-bold text-white">1</span>
+                    </div>
+                    <h3 class="text-xl font-display font-semibold text-primary mb-3">Discovery</h3>
+                    <p class="text-gray-600">Comprehensive assessment of your current state, challenges, and opportunities.</p>
+                </div>
+                
+                <div class="process-step text-center reveal">
+                    <div class="w-20 h-20 bg-secondary rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-2xl font-bold text-white">2</span>
+                    </div>
+                    <h3 class="text-xl font-display font-semibold text-primary mb-3">Strategy</h3>
+                    <p class="text-gray-600">Development of customized solutions and strategic roadmaps tailored to your goals.</p>
+                </div>
+                
+                <div class="process-step text-center reveal">
+                    <div class="w-20 h-20 bg-secondary rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-2xl font-bold text-white">3</span>
+                    </div>
+                    <h3 class="text-xl font-display font-semibold text-primary mb-3">Implementation</h3>
+                    <p class="text-gray-600">Expert execution of solutions with continuous monitoring and adjustment.</p>
+                </div>
+                
+                <div class="process-step text-center reveal">
+                    <div class="w-20 h-20 bg-secondary rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-2xl font-bold text-white">4</span>
+                    </div>
+                    <h3 class="text-xl font-display font-semibold text-primary mb-3">Optimization</h3>
+                    <p class="text-gray-600">Ongoing support and refinement to ensure sustained success and improvement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 bg-secondary text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl md:text-5xl font-display font-bold mb-6 reveal">
+                Ready to Get Started?
+            </h2>
+            <p class="text-xl mb-8 reveal">
+                Let's discuss which services are right for your business and create a customized solution that drives results.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center reveal">
+                <a href="contact.html" class="bg-white text-secondary hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105">
+                    Schedule Consultation
+                </a>
+                <a href="about.html" class="border-2 border-white hover:bg-white hover:text-secondary text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300">
+                    Learn More About Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="text-3xl font-display font-bold mb-4">
+                    Pro<span class="text-secondary">Solutions</span>
+                </div>
+                <p class="text-gray-400 mb-8 max-w-2xl mx-auto">
+                    Transforming businesses through innovative solutions and strategic expertise. Your success is our mission.
+                </p>
+                <div class="border-t border-gray-700 pt-8">
+                    <p class="text-gray-400">
+                        © 2025 ProSolutions. All rights reserved. | Professional Business Solutions
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
