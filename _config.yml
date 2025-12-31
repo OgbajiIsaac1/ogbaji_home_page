@@ -1,0 +1,19 @@
+title: Ogbaji's Expert Solutions
+description: Business insights & articles
+author: Isaac Ogbaji
+baseurl: "/ogbaji_home_page"   # your repo name
+url: "https://ogbajiisaac1.github.io"
+
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# colour overrides (Minima uses Sass variables)
+sass:
+  style: compressed
+
+# blog settings
+permalink: /blog/:year/:month/:day/:title/
+paginate: 5
+paginate_path: "/blog/page:num/"
