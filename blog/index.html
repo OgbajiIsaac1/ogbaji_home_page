@@ -2,17 +2,61 @@
 layout: default
 title: Blog
 ---
-<div class="max-w-4xl mx-auto px-4 py-16">
-  <h1 class="font-display text-5xl font-bold text-primary mb-8">Latest Articles</h1>
 
-  {% for post in site.posts %}
-    <article class="mb-10 pb-8 border-b border-gray-200">
-      <h2 class="text-2xl font-semibold mb-2">
-        <a href="{{ post.url | relative_url }}" class="text-primary hover:text-secondary">{{ post.title }}</a>
-      </h2>
-      <p class="text-sm text-gray-500 mb-2">{{ post.date | date: "%B %d, %Y" }}</p>
-      <p class="text-gray-700">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
-      <a href="{{ post.url | relative_url }}" class="mt-3 inline-block text-secondary font-semibold">Read more →</a>
+<!-- hero -->
+<section class="pt-32 pb-20 bg-gradient-to-br from-primary to-accent text-white">
+  <div class="max-w-4xl mx-auto px-4 text-center reveal relative">
+    <!-- NEW: back link -->
+    <a href="{{ '/' | relative_url }}" class="absolute top-0 right-0 text-white hover:text-secondary transition">
+      <i class="fas fa-home mr-2"></i>Back to main site
+    </a>
+
+    <h1 class="font-display text-5xl md:text-6xl font-bold mb-4">Insights & Articles</h1>
+    <p class="text-xl opacity-90">Business strategies, digital transformation tips and leadership thoughts from our team.</p>
+  </div>
+</section>
+
+<!-- articles list -->
+<section class="py-20 bg-neutral">
+  <div class="max-w-5xl mx-auto px-4 grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="blog-grid">
+    {% for post in site.posts %}
+    <article class="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 reveal">
+      <div class="h-48 bg-gradient-to-br from-secondary to-accent"></div>
+      <div class="p-6">
+        <time class="text-sm text-gray-500">{{ post.date | date: "%B %d, %Y" }}</time>
+        <h2 class="text-2xl font-display font-semibold text-primary mt-2 mb-3">
+          <a href="{{ post.url | relative_url }}" class="hover:text-secondary transition">{{ post.title }}</a>
+        </h2>
+        <p class="text-gray-600 mb-4">{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
+        <a href="{{ post.url | relative_url }}" class="inline-flex items-center text-secondary font-semibold hover:text-yellow-600 transition">
+          Read more <i class="fas fa-arrow-right ml-2"></i>
+        </a>
+      </div>
     </article>
-  {% endfor %}
-</div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- footer -->
+<footer class="bg-primary text-white py-12">
+  <div class="max-w-7xl mx-auto px-4 text-center">
+    <div class="text-3xl font-display font-bold mb-4">Ogbaji's <span class="text-secondary">Expert Solutions</span></div>
+    <p class="text-gray-400 mb-6">Thanks for reading — come back soon for new insights.</p>
+    <!-- NEW: bottom back link -->
+    <a href="{{ '/' | relative_url }}" class="inline-flex items-center bg-secondary hover:bg-yellow-600 text-white px-6 py-3 rounded-lg font-semibold transition">
+      <i class="fas fa-home mr-2"></i>Back to main site
+    </a>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script>
+  anime({
+    targets: '#blog-grid .reveal',
+    opacity: [0, 1],
+    translateY: [30, 0],
+    delay: anime.stagger(100, {start: 200}),
+    duration: 700,
+    easing: 'easeOutQuad'
+  });
+</script>
