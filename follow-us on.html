@@ -1,172 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Connect With Us | YourCompany</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Follow Us | Ogbaji's Expert Solutions</title>
+    <meta name="description" content="Connect with Ogbaji's Expert Solutions on social media for insights, updates and behind-the-scenes moments.">
 
-  <!-- Google Fonts (same as rest of site) -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
 
-  <!-- Font-Awesome for social icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- External Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#1a2332',
+                        'secondary': '#d4af37',
+                        'accent': '#4a9b8e',
+                        'neutral': '#f8f9fa',
+                        'text': '#2c3e50'
+                    },
+                    fontFamily: {
+                        'display': ['Playfair Display', 'serif'],
+                        'body': ['Inter', 'sans-serif'],
+                        'mono': ['Source Code Pro', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
 
-  <!-- Anime.js (already used on site) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <!-- Font-Awesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <style>
-    :root{
-      --navy: #1a2332;
-      --gold: #d4af37;
-      --teal: #4a9b8e;
-      --light: #f8f9fa;
-      --charcoal: #2c3e50;
-      --space: 8px;
-    }
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{
-      font-family:'Inter',sans-serif;
-      background:var(--light);
-      color:var(--charcoal);
-      line-height:1.6;
-    }
-    header{
-      background:var(--navy);
-      padding:calc(var(--space)*4) 0;
-      text-align:center;
-    }
-    header h1{
-      font-family:'Playfair Display',serif;
-      color:var(--gold);
-      font-size:2.5rem;
-      letter-spacing:1px;
-    }
-    header p{color:var(--light);margin-top:var(--space);}
-    section{
-      max-width:1100px;
-      margin:0 auto;
-      padding:calc(var(--space)*6) calc(var(--space)*3);
-    }
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:calc(var(--space)*4);
-    }
-    .card{
-      background:#fff;
-      border-radius:8px;
-      padding:calc(var(--space)*5);
-      text-align:center;
-      box-shadow:0 4px 12px rgba(0,0,0,.08);
-      transition:transform .3s,box-shadow .3s;
-    }
-    .card:hover{
-      transform:translateY(-4px);
-      box-shadow:0 8px 20px rgba(0,0,0,.12);
-    }
-    .card i{
-      font-size:3rem;
-      color:var(--teal);
-      margin-bottom:var(--space);
-    }
-    .card h3{margin-bottom:var(--space);}
-    .card a{
-      display:inline-block;
-      margin-top:calc(var(--space)*2);
-      padding:calc(var(--space)*1.5) calc(var(--space)*3);
-      background:var(--gold);
-      color:#fff;
-      text-decoration:none;
-      border-radius:4px;
-      font-weight:600;
-      transition:background .3s;
-    }
-    .card a:hover{background:var(--navy);}
-    footer{
-      text-align:center;
-      padding:calc(var(--space)*4) 0;
-      font-size:.85rem;
-      color:var(--charcoal);
-    }
-    /* entrance animation */
-    .card{opacity:0;transform:translateY(30px);}
-  </style>
+    <style>
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.6s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .nav-link { position: relative; transition: color 0.3s ease; }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #d4af37;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+    </style>
 </head>
-<body>
+<body class="font-body text-text bg-neutral">
 
-<header>
-  <h1>Let's Stay Connected</h1>
-  <p>Follow us for updates, insights and behind-the-scenes moments.</p>
-</header>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="text-2xl font-display font-bold text-primary">
+                        Ogbaji's <span class="bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">Expert Solutions</span>
+                    </div>
+                </div>
 
-<section>
-  <div class="grid" id="social-grid">
-    <!-- 1 -->
-    <div class="card">
-      <i class="fab fa-linkedin"></i>
-      <h3>LinkedIn</h3>
-      <p>Professional updates and industry articles.</p>
-      <a href="https://linkedin.com/company/yourcompany" target="_blank" rel="noopener">Follow</a>
-    </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="nav-link text-primary hover:text-secondary font-medium">Home</a>
+                        <a href="about.html" class="nav-link text-primary hover:text-secondary font-medium">About</a>
+                        <a href="services.html" class="nav-link text-primary hover:text-secondary font-medium">Services</a>
+                        <a href="contact.html" class="nav-link text-primary hover:text-secondary font-medium">Contact</a>
+                        <a href="socials.html" class="nav-link active text-primary hover:text-secondary font-medium">Follow Us</a>
+                    </div>
+                </div>
 
-    <!-- 2 -->
-    <div class="card">
-      <i class="fab fa-twitter"></i>
-      <h3>Twitter</h3>
-      <p>Quick news and real-time conversations.</p>
-      <a href="https://twitter.com/yourhandle" target="_blank" rel="noopener">Follow</a>
-    </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-primary hover:text-secondary">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
 
-    <!-- 3 -->
-    <div class="card">
-      <i class="fab fa-instagram"></i>
-      <h3>Instagram</h3>
-      <p>Visual stories and team snapshots.</p>
-      <a href="https://instagram.com/yourhandle" target="_blank" rel="noopener">Follow</a>
-    </div>
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <a href="index.html" class="block px-3 py-2 text-primary hover:text-secondary font-medium">Home</a>
+                    <a href="about.html" class="block px-3 py-2 text-primary hover:text-secondary font-medium">About</a>
+                    <a href="services.html" class="block px-3 py-2 text-primary hover:text-secondary font-medium">Services</a>
+                    <a href="contact.html" class="block px-3 py-2 text-primary hover:text-secondary font-medium">Contact</a>
+                    <a href="socials.html" class="block px-3 py-2 text-secondary font-medium">Follow Us</a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-    <!-- 4 -->
-    <div class="card">
-      <i class="fab fa-facebook"></i>
-      <h3>Facebook</h3>
-      <p>Community updates and event announcements.</p>
-      <a href="https://facebook.com/yourpage" target="_blank" rel="noopener">Follow</a>
-    </div>
+    <!-- Hero -->
+    <section class="pt-32 pb-20 bg-gradient-to-br from-primary to-accent text-white">
+        <div class="max-w-4xl mx-auto px-4 text-center reveal">
+            <h1 class="font-display text-5xl md:text-6xl font-bold mb-6">Let's Stay Connected</h1>
+            <p class="text-xl md:text-2xl opacity-90">Follow us for insights, updates and behind-the-scenes moments.</p>
+        </div>
+    </section>
 
-    <!-- 5 -->
-    <div class="card">
-      <i class="fab fa-youtube"></i>
-      <h3>YouTube</h3>
-      <p>Tutorials, webinars and product demos.</p>
-      <a href="https://youtube.com/c/yourchannel" target="_blank" rel="noopener">Subscribe</a>
-    </div>
+    <!-- Social Grid -->
+    <section class="py-20 bg-neutral">
+        <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="social-grid">
+            <div class="card bg-white rounded-xl shadow-lg p-8 text-center reveal">
+                <i class="fab fa-linkedin text-4xl text-secondary mb-4"></i>
+                <h3 class="font-display text-2xl text-primary mb-2">LinkedIn</h3>
+                <p class="text-gray-600 mb-4">Professional updates and industry insights.</p>
+                <a href="https://www.linkedin.com/in/isaac-ogbaji/" target="_blank" rel="noopener" class="inline-block bg-secondary hover:bg-yellow-600 text-white px-6 py-2 rounded-lg font-semibold transition">Follow</a>
+            </div>
 
-    <!-- 6 -->
-    <div class="card">
-      <i class="fab fa-github"></i>
-      <h3>GitHub</h3>
-      <p>Open-source projects and code snippets.</p>
-      <a href="https://github.com/yourusername" target="_blank" rel="noopener">Follow</a>
-    </div>
-  </div>
-</section>
+            <div class="card bg-white rounded-xl shadow-lg p-8 text-center reveal">
+                <i class="fab fa-twitter text-4xl text-accent mb-4"></i>
+                <h3 class="font-display text-2xl text-primary mb-2">Twitter</h3>
+                <p class="text-gray-600 mb-4">Quick news and real-time conversations.</p>
+                <a href="https://twitter.com/ogbaji_solutions" target="_blank" rel="noopener" class="inline-block bg-accent hover:bg-teal-600 text-white px-6 py-2 rounded-lg font-semibold transition">Follow</a>
+            </div>
 
-<footer>
-  © <span id="yr"></span> YourCompany. All rights reserved.
-</footer>
+            <div class="card bg-white rounded-xl shadow-lg p-8 text-center reveal">
+                <i class="fab fa-facebook text-4xl text-primary mb-4"></i>
+                <h3 class="font-display text-2xl text-primary mb-2">Facebook</h3>
+                <p class="text-gray-600 mb-4">Community updates and event announcements.</p>
+                <a href="https://facebook.com/ogbajiexpertsolutions" target="_blank" rel="noopener" class="inline-block bg-primary hover:bg-gray-800 text-white px-6 py-2 rounded-lg font-semibold transition">Follow</a>
+            </div>
 
-<script>
-  /* staggered fade-in (Anime.js) */
-  anime({
-    targets: '#social-grid .card',
-    opacity: [0, 1],
-    translateY: [30, 0],
-    delay: anime.stagger(100, {start: 200}),
-    duration: 700,
-    easing: 'easeOutQuad'
-  });
+            <div class="card bg-white rounded-xl shadow-lg p-8 text-center reveal">
+                <i class="fab fa-instagram text-4xl text-pink-500 mb-4"></i>
+                <h3 class="font-display text-2xl text-primary mb-2">Instagram</h3>
+                <p class="text-gray-600 mb-4">Visual stories and team snapshots.</p>
+                <a href="https://instagram.com/ogbaji_solutions" target="_blank" rel="noopener" class="inline-block bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white px-6 py-2 rounded-lg font-semibold transition">Follow</a>
+            </div>
 
-  document.getElementById('yr').textContent = new Date().getFullYear();
-</script>
+            <div class="card bg-white rounded-xl shadow-lg p-8 text-center reveal">
+                <i class="fab fa-youtube text-4xl text-red-600 mb-4"></i>
+                <h3 class="font-display text-2xl text-primary mb-2">YouTube</h3>
+                <p class="text-gray-600 mb-4">Tutorials, webinars and product demos.</p>
+                <a href="https://youtube.com/c/OgbajiExpertSolutions" target="_blank" rel="noopener" class="inline-block bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg font-semibold transition">Subscribe</a>
+            </div>
+
+            <div class="card bg-white rounded-xl shadow-lg p-8 text-center reveal">
+                <i class="fab fa-github text-4xl text-gray-800 mb-4"></i>
+                <h3 class="font-display text-2xl text-primary mb-2">GitHub</h3>
+                <p class="text-gray-600 mb-4">Open-source projects and code snippets.</p>
+                <a href="https://github.com/ogbajiisaac1" target="_blank" rel="noopener" class="inline-block bg-gray-800 hover:bg-gray-900 text-white px-6 py-2 rounded-lg font-semibold transition">Follow</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="text-3xl font-display font-bold mb-4">Ogbaji's <span class="text-secondary">Expert Solutions</span></div>
+            <p class="text-gray-400 mb-8">Transforming businesses through innovative solutions and strategic expertise.</p>
+            <div class="border-t border-gray-700 pt-8">
+                <p class="text-gray-400">© 2025 Ogbaji's Expert Solutions. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+
+        // Reveal animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.2 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Stagger card animation
+        anime({
+            targets: '#social-grid .card',
+            opacity: [0, 1],
+            translateY: [30, 0],
+            delay: anime.stagger(100, { start: 200 }),
+            duration: 700,
+            easing: 'easeOutQuad'
+        });
+    </script>
 </body>
 </html>
