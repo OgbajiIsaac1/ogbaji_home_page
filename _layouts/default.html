@@ -4,23 +4,56 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
-  <!-- Include custom head additions -->
-   {% include head.html %}
+
+  <!-- fonts + custom blog colours -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/assets/css/blog.css' | relative_url }}">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <style>
+    :root{--navy:#1a2332;--gold:#d4af37;--accent:#4a9b8e;--light:#f8f9fa;--charcoal:#2c3e50}
+    body{font-family:'Inter',sans-serif;background:var(--light);color:var(--charcoal)}
+    header{background:linear-gradient(135deg,var(--navy),var(--accent))}
+    nav a{color:#fff;text-decoration:none;font-weight:500;margin:0 .75rem;transition:color .3s}
+    nav a:hover,nav a.active{color:var(--gold)}
+    footer{background:var(--navy);color:#fff;text-align:center;padding:3rem 1rem}
+    .reveal{opacity:0;transform:translateY(30px)}
+  </style>
 </head>
+
 <body>
-  <header>
-    <!-- Your header content here -->
-    <nav>
-      <!-- Your navigation links here -->
-    </nav>
+  <!-- ======  HEADER / NAV  ====== -->
+  <header class="shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 flex justify-between items-center h-16">
+      <div class="text-2xl font-display font-bold text-white">
+        Ogbaji's <span class="text-gold">Expert Solutions</span>
+      </div>
+      <nav>
+        <a href="{{ '/' | relative_url }}"           class="{{ page.url | relative_url }} == '/' ? 'active' : ''" >Home</a>
+        <a href="{{ '/about.html' | relative_url }}" class="{{ page.url | relative_url }} == '/about.html' ? 'active' : ''" >About</a>
+        <a href="{{ '/services.html' | relative_url }}" class="{{ page.url | relative_url }} == '/services.html' ? 'active' : ''" >Services</a>
+        <a href="{{ '/contact.html' | relative_url }}" class="{{ page.url | relative_url }} == '/contact.html' ? 'active' : ''" >Contact</a>
+        <a href="{{ '/blog/' | relative_url }}"      class="{{ page.url | relative_url }} == '/blog/' ? 'active' : ''" >Blog</a>
+      </nav>
+    </div>
   </header>
 
-  <main>
+  <!-- ======  PAGE CONTENT  ====== -->
+  <main class="min-h-screen">
     {{ content }}
   </main>
 
+  <!-- ======  FOOTER  ====== -->
   <footer>
-    <!-- Your footer content here -->
+    <div class="max-w-4xl mx-auto">
+      <p class="mb-2">© <span id="yr"></span> Ogbaji's Expert Solutions. All rights reserved.</p>
+      <a href="{{ '/' | relative_url }}" class="text-gold hover:underline">Back to main site</a>
+    </div>
   </footer>
+
+  <script>
+    // footer year + reveal animations
+    document.getElementById('yr').textContent = new Date().getFullYear();
+    anime({targets:'.reveal',opacity:[0,1],translateY:[30,0],delay:anime.stagger(100),duration:700,easing:'easeOutQuad'});
+  </script>
 </body>
 </html>
