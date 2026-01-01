@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
+  <!-- Include custom head additions -->
+   {% include head.html %}
+</head>
+<body>
+  <header>
+    <!-- Your header content here -->
+    <nav>
+      <!-- Your navigation links here -->
+    </nav>
+  </header>
+
+  <main>
+    {{ content }}
+  </main>
+
+  <footer>
+    <!-- Your footer content here -->
+  </footer>
+</body>
+</html>
