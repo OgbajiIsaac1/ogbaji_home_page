@@ -1,0 +1,65 @@
+[
+  {
+    "id": "3",
+    "title": "The Future of Digital Transformation in Africa",
+    "category": "Industry Insights",
+    "date": "2026-06-15",
+    "author": "Isaac Ogbaji",
+    "readTime": "5 min read",
+    "image": "",
+    "excerpt": "Exploring how African businesses are leapfrogging legacy systems and embracing digital-first strategies to compete on a global scale.",
+    "content": [
+      "<p>Digital transformation is no longer a luxury — it is a necessity for businesses across Africa. From Lagos to Nairobi, companies are finding innovative ways to leverage technology to solve uniquely African challenges.</p>",
+      "<h3>The Leapfrog Effect</h3>",
+      "<p>Africa has a history of leapfrogging traditional infrastructure. Just as mobile phones bypassed landlines, digital technologies are allowing businesses to skip entire stages of technological evolution. Cloud computing, mobile money, and AI-powered analytics are now accessible to startups and SMEs that would have been locked out of traditional markets just a decade ago.</p>",
+      "<h3>Key Drivers</h3>",
+      "<p>Several factors are accelerating digital transformation across the continent: increased mobile penetration, growing internet connectivity, a young and tech-savvy population, and significant investment from both local and international venture capital firms.</p>",
+      "<h3>Challenges and Opportunities</h3>",
+      "<p>While the potential is immense, challenges remain. Infrastructure gaps, regulatory uncertainty, and the need for specialized talent are significant hurdles. However, for businesses that can navigate these challenges, the rewards are substantial. Early adopters are already seeing improved efficiency, broader market reach, and enhanced customer engagement.</p>",
+      "<p>At Ogbaji's Expert Solutions, we are committed to helping organizations navigate this digital frontier with tailored strategies that deliver measurable results.</p>"
+    ],
+    "tags": ["digital transformation", "Africa", "innovation", "technology"]
+  },
+  {
+    "id": "2",
+    "title": "Building Resilient Supply Chains with AI",
+    "category": "Business Strategy",
+    "date": "2026-05-28",
+    "author": "Isaac Ogbaji",
+    "readTime": "4 min read",
+    "image": "",
+    "excerpt": "How artificial intelligence is revolutionizing supply chain management and helping businesses predict disruptions before they happen.",
+    "content": [
+      "<p>Global supply chains have faced unprecedented challenges in recent years. From pandemic disruptions to geopolitical tensions, businesses have learned the hard way that traditional supply chain models are no longer sufficient.</p>",
+      "<h3>AI-Powered Predictions</h3>",
+      "<p>Artificial intelligence is changing the game by enabling predictive analytics that can forecast disruptions before they occur. Machine learning models analyze historical data, weather patterns, geopolitical events, and market trends to identify potential bottlenecks and suggest alternative routes or suppliers.</p>",
+      "<h3>Real-Time Visibility</h3>",
+      "<p>Modern AI systems provide end-to-end visibility across the entire supply chain. This real-time transparency allows businesses to react instantly to changes, whether it is a delayed shipment or a sudden spike in demand.</p>",
+      "<h3>Practical Implementation</h3>",
+      "<p>For most organizations, the journey begins with data. Clean, organized data is the foundation of any successful AI implementation. We recommend starting with a focused pilot project — perhaps optimizing a single supply chain node — before scaling across the entire operation.</p>",
+      "<p>Resilience is not just about surviving disruptions; it is about thriving in spite of them. AI offers the tools to make that possible.</p>"
+    ],
+    "tags": ["AI", "supply chain", "machine learning", "logistics"]
+  },
+  {
+    "id": "1",
+    "title": "Why Every Business Needs a Digital Strategy in 2026",
+    "category": "Strategy",
+    "date": "2026-05-10",
+    "author": "Isaac Ogbaji",
+    "readTime": "6 min read",
+    "image": "",
+    "excerpt": "A comprehensive digital strategy is no longer optional. Here is why every organization — from startups to enterprises — must prioritize digital transformation.",
+    "content": [
+      "<p>The business landscape of 2026 is fundamentally different from what it was even five years ago. Consumer expectations have shifted, competition has intensified, and technology continues to evolve at a breathtaking pace.</p>",
+      "<h3>The New Baseline</h3>",
+      "<p>What was once considered a competitive advantage is now table stakes. A website is not enough. Social media presence is not enough. Customers expect seamless omnichannel experiences, personalized interactions, and instant responses. Without a cohesive digital strategy, businesses risk being left behind.</p>",
+      "<h3>Components of a Winning Strategy</h3>",
+      "<p>A robust digital strategy encompasses several key elements: clear business objectives aligned with digital initiatives, a deep understanding of your target audience, the right technology stack, data-driven decision-making, and a culture of continuous improvement.</p>",
+      "<h3>Where to Start</h3>",
+      "<p>Begin by auditing your current digital footprint. Identify gaps in your online presence, assess your competitors, and most importantly, listen to your customers. Their pain points will guide your priorities. From there, develop a roadmap that balances quick wins with long-term transformation.</p>",
+      "<p>Digital strategy is not a one-time project — it is an ongoing commitment to growth and relevance in a rapidly changing world.</p>"
+    ],
+    "tags": ["digital strategy", "business growth", "digital transformation", "2026"]
+  }
+]

@@ -1,0 +1,10 @@
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+node_modules/
+*.log
+.DS_Store
+Thumbs.db
+preview/
+preview.js

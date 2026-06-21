@@ -8,12 +8,8 @@ theme: minima
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-sitemap
 
 # colour overrides (Minima uses Sass variables)
 sass:
   style: compressed
-
-# blog settings
-permalink: /blog/:year/:month/:day/:title/
-paginate: 5
-paginate_path: "/blog/page:num/"

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ogbajiisaac1.github.io/ogbaji_home_page/sitemap.xml

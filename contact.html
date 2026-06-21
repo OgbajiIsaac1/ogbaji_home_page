@@ -4,16 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us | Ogbaji's_ExpertSolutions - Get Expert Business Consulting</title>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Contact Us | Ogbaji's Expert Solutions - Get Expert Business Consulting">
+    <meta property="og:description" content="Get in touch with our expert business consultants. Schedule a consultation, request a quote, or learn more about our comprehensive business solutions.">
+    <meta property="og:url" content="https://ogbajiisaac1.github.io/ogbaji_home_page/contact.html">
+    <meta property="og:image" content="https://ogbajiisaac1.github.io/ogbaji_home_page/resources/hero-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contact Us | Ogbaji's Expert Solutions - Get Expert Business Consulting">
+    <meta name="twitter:description" content="Get in touch with our expert business consultants. Schedule a consultation, request a quote, or learn more.">
     <meta name="description" content="Get in touch with our expert business consultants. Schedule a consultation, request a quote, or learn more about our comprehensive business solutions.">
     
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="canonical" href="https://ogbajiisaac1.github.io/ogbaji_home_page/contact.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
     
     <!-- External Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
     
     <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -36,91 +48,44 @@
         }
     </script>
     
-    <style>
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-        
-        .gradient-text {
-            background: linear-gradient(135deg, #d4af37, #4a9b8e);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-        
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .nav-link {
-            position: relative;
-            transition: color 0.3s ease;
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background-color: #d4af37;
-            transition: width 0.3s ease;
-        }
-        
-        .nav-link:hover::after,
-        .nav-link.active::after {
-            width: 100%;
-        }
-        
-        .form-input {
-            transition: all 0.3s ease;
-        }
-        
-        .form-input:focus {
-            border-color: #d4af37;
-            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
-        }
-        
-        .form-error {
-            border-color: #ef4444;
-            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
-        }
-        
-        .form-success {
-            border-color: #10b981;
-            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
-        }
-        
-        .success-message {
-            background: linear-gradient(135deg, #10b981, #059669);
-        }
-        
-        .error-message {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-        }
-    </style>
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact Us | Ogbaji's Expert Solutions",
+  "url": "https://ogbajiisaac1.github.io/ogbaji_home_page/contact.html",
+  "description": "Get in touch with our expert business consultants. Schedule a consultation, request a quote, or learn more about our comprehensive business solutions.",
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "Ogbaji's Expert Solutions",
+    "url": "https://ogbajiisaac1.github.io/ogbaji_home_page/",
+    "logo": "https://ogbajiisaac1.github.io/ogbaji_home_page/favicon.svg",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+234-803-744-3347",
+      "contactType": "customer service",
+      "email": "ogbajiisaac@gmail.com"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Grace Court Estate, Suite 8 block 5, Kuchikau",
+      "addressLocality": "Karu",
+      "addressRegion": "Nasarawa",
+      "addressCountry": "NG"
+    }
+  }
+}
+</script>
 </head>
 <body class="font-body text-text bg-neutral">
     <!-- Navigation -->
     <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="container-wide">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
                     <div class="text-2xl font-display font-bold text-primary">
-                        <span class="gradient-text">Ogbaji's <span class="gradient-text">Expert Solutions</span>
+                        <span class="gradient-text">Ogbaji's Expert Solutions</span>
                     </div>
                 </div>
                 
@@ -128,10 +93,19 @@
                     <div class="ml-10 flex items-baseline space-x-8">
                         <a href="index.html" class="nav-link text-primary hover:text-secondary font-medium">Home</a>
                         <a href="about.html" class="nav-link text-primary hover:text-secondary font-medium">About</a>
+                        <a href="blog.html" class="nav-link text-primary hover:text-secondary font-medium">Blog</a>
+                        <a href="about-ceo.html" class="nav-link text-primary hover:text-secondary font-medium">CEO</a>
                         <a href="services.html" class="nav-link text-primary hover:text-secondary font-medium">Services</a>
                         <a href="contact.html" class="nav-link active text-primary hover:text-secondary font-medium">Contact</a>
-                        <a href="blog/" class="nav-link text-primary hover:text-secondary font-medium">Blog</a>
-                        <a href="follow-us.html" class="nav-link text-primary hover:text-secondary font-medium">follow us</a>
+                        <a href="follow-us.html" class="nav-link text-primary hover:text-secondary font-medium">Follow Us</a>
+                        <button id="theme-toggle" class="text-primary hover:text-secondary transition-colors" aria-label="Toggle dark mode">
+                            <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                            </svg>
+                            <svg class="w-5 h-5 hidden dark:inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                            </svg>
+                        </button>
                     </div>
                 </div>
                 
@@ -150,16 +124,18 @@
             <div class="px-2 pt-2 pb-3 space-y-1">
                 <a href="index.html" class="block px-3 py-2 text-primary hover:text-secondary font-medium">Home</a>
                 <a href="about.html" class="block px-3 py-2 text-primary hover:text-secondary font-medium">About</a>
+                <a href="blog.html" class="block px-3 py-2 text-primary hover:text-secondary font-medium">Blog</a>
+                <a href="about-ceo.html" class="block px-3 py-2 text-primary hover:text-secondary font-medium">CEO</a>
                 <a href="services.html" class="block px-3 py-2 text-primary hover:text-secondary font-medium">Services</a>
                 <a href="contact.html" class="block px-3 py-2 text-primary hover:text-secondary font-medium">Contact</a>
-                <a href="follow-us.html" class="nav-link text-primary hover:text-secondary font-medium">follow us</a>
+                <a href="follow-us.html" class="block px-3 py-2 text-primary hover:text-secondary font-medium">Follow Us</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="pt-24 pb-16 bg-gradient-to-br from-primary to-accent text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="container-wide text-center">
             <h1 class="text-5xl md:text-6xl font-display font-bold mb-6 reveal">
                 Contact <span class="text-secondary">Us</span>
             </h1>
@@ -170,8 +146,8 @@
     </section>
 
     <!-- Contact Form Section -->
-    <section class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section class="py-20 section-gradient">
+        <div class="container-wide">
             <div class="grid lg:grid-cols-2 gap-16">
                 <!-- Contact Form -->
                 <div class="reveal">
@@ -182,7 +158,8 @@
                         Fill out the form below and we'll get back to you within 24 hours to discuss your business needs.
                     </p>
                     
-                    <form id="contact-form" class="space-y-6">
+                    <!-- To enable form submissions, create a free Formspree account at https://formspree.io and replace "YOUR_FORM_ID" below -->
+                    <form id="contact-form" class="space-y-6" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
                         <div class="grid md:grid-cols-2 gap-6">
                             <div>
                                 <label for="firstName" class="block text-sm font-semibold text-primary mb-2">First Name *</label>
@@ -350,11 +327,12 @@
     </section>
 
     <!-- Map Section -->
-    <section class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section class="py-20 section-gradient">
+        <div class="container-wide">
             <div class="text-center mb-16 reveal">
+                <div class="accent-bar accent-bar-center"></div>
                 <h2 class="text-4xl md:text-5xl font-display font-bold text-primary mb-6">
-                    Find <span class="gradient-text">Us</span>
+                    Get in <span class="gradient-text">Touch</span>
                 </h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
                     Located in the heart of the business district, close to Abuja, the Federal Capital Territory, we're easily accessible and ready to welcome you for in-person consultations.
@@ -378,15 +356,15 @@
     </section>
 
     <!-- FAQ Section -->
-    <section class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section class="py-20 section-gradient">
+        <div class="container-wide">
             <div class="text-center mb-16 reveal">
                 <h2 class="text-4xl md:text-5xl font-display font-bold text-primary mb-6">
                     Frequently Asked <span class="gradient-text">Questions</span>
                 </h2>
             </div>
             
-            <div class="max-w-4xl mx-auto space-y-6">
+            <div class="container-wide space-y-6">
                 <div class="card-hover bg-gray-50 rounded-xl p-6 reveal">
                     <h3 class="text-xl font-display font-semibold text-primary mb-3">How quickly can you start a project?</h3>
                     <p class="text-gray-600">We can typically begin initial consultations within 48-72 hours of your inquiry. Project start times vary based on scope and complexity, but most engagements begin within 1-2 weeks.</p>
@@ -410,25 +388,75 @@
         </div>
     </section>
 
+    <!-- Business Inquiries -->
+    <section class="business-contact">
+      <div class="container-wide text-center reveal">
+        <h2>Business Inquiries</h2>
+        <p>For partnerships, consultations, educational solutions, and general business discussions, please reach out through our business WhatsApp line.</p>
+        <a href="https://wa.me/2348037443347?text=Hello%2C%20I%20visited%20your%20website%20and%20would%20like%20to%20make%20a%20business%20inquiry." target="_blank" rel="noopener" class="whatsapp-btn business-btn">
+          Business WhatsApp
+        </a>
+      </div>
+    </section>
+
     <!-- Footer -->
-    <footer class="bg-primary text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
-                <div class="text-3xl font-display font-bold mb-4">
-                    Ogbaji's_Expert<span class="text-secondary">Solutions</span>
-                </div>
-                <p class="text-gray-400 mb-8 max-w-2xl mx-auto">
-                    Transforming businesses through innovative solutions and strategic expertise. Your success is our mission.
-                </p>
-                <div class="border-t border-gray-700 pt-8">
-                    <p class="text-gray-400">
-                        © 2026 Ogbaji's_ExpertSolutions. All rights reserved. | Professional Business Solutions
-                    </p>
-                </div>
-            </div>
+    <footer class="site-footer">
+      <div class="container-wide">
+        <div class="grid md:grid-cols-3 gap-8 py-12">
+          <div>
+            <div class="text-2xl font-display font-bold mb-4 gradient-text">Ogbaji's Expert Solutions</div>
+            <p class="text-gray-400 text-sm leading-relaxed">Transforming businesses through innovative solutions and strategic expertise.</p>
+          </div>
+          <div>
+            <h4 class="text-white font-semibold mb-4 uppercase tracking-wider text-sm">Quick Links</h4>
+            <ul class="space-y-2 text-sm">
+              <li><a href="index.html" class="text-gray-400 hover:text-white transition">Home</a></li>
+              <li><a href="about.html" class="text-gray-400 hover:text-white transition">About</a></li>
+              <li><a href="services.html" class="text-gray-400 hover:text-white transition">Services</a></li>
+              <li><a href="contact.html" class="text-gray-400 hover:text-white transition">Contact</a></li>
+              <li><a href="blog.html" class="text-gray-400 hover:text-white transition">Blog</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-white font-semibold mb-4 uppercase tracking-wider text-sm">Connect</h4>
+            <ul class="space-y-2 text-sm">
+              <li><a href="about-ceo.html" class="text-gray-400 hover:text-white transition">Meet the CEO</a></li>
+              <li><a href="follow-us.html" class="text-gray-400 hover:text-white transition">Follow Us</a></li>
+            </ul>
+          </div>
         </div>
+        <div class="border-t border-gray-700 pt-8 pb-4">
+          <p class="text-gray-500 text-sm text-center">&copy; <span id="year"></span> Ogbaji's Expert Solutions. All rights reserved.</p>
+        </div>
+      </div>
     </footer>
 
     <script src="main.js"></script>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+        (function() {
+            const theme = localStorage.getItem('theme');
+            if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                document.documentElement.classList.add('dark');
+            }
+        })();
+        document.addEventListener('DOMContentLoaded', function() {
+            const btn = document.getElementById('theme-toggle');
+            if (!btn) return;
+            btn.addEventListener('click', function() {
+                const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+                if (isDark) {
+                    document.documentElement.removeAttribute('data-theme');
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

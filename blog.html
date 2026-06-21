@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — Ogbaji's Expert Solutions</title>
+  <meta name="description" content="Insights, strategies, and thought leadership from Ogbaji's Expert Solutions.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { display: ['Playfair Display', 'serif'], body: ['Inter', 'sans-serif'], mono: ['Source Code Pro', 'monospace'] },
+          colors: { navy: '#1a2332', gold: '#d4af37', teal: '#4a9b8e', charcoal: '#2c3e50' }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="canonical" href="https://ogbajiisaac1.github.io/ogbaji_home_page/blog.html">
+  <meta property="og:title" content="Blog — Ogbaji's Expert Solutions">
+  <meta property="og:description" content="Insights, strategies, and thought leadership.">
+  <meta property="og:url" content="https://ogbajiisaac1.github.io/ogbaji_home_page/blog.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    :root { --navy: #1a2332; --gold: #d4af37; --teal: #4a9b8e; --light: #f8f9fa; --charcoal: #2c3e50; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: var(--light); color: var(--charcoal); overflow-x: hidden; }
+
+    /* nav */
+    .top-nav { background: var(--navy); padding: 0 24px; position: sticky; top: 0; z-index: 1000; }
+    .top-nav .inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .top-nav .logo { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; color: #fff; text-decoration: none; }
+    .top-nav .logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { color: #b0b8c5; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+    .menu-toggle { display: none; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
+    .mobile-menu { display: none; flex-direction: column; gap: 12px; padding: 16px 0 20px; }
+    .mobile-menu a { color: #b0b8c5; text-decoration: none; font-size: 0.95rem; padding: 6px 0; transition: color 0.3s; }
+    .mobile-menu a:hover { color: var(--gold); }
+    .mobile-menu.open { display: flex; }
+
+    /* hero */
+    .blog-hero { background: linear-gradient(135deg, var(--navy) 0%, #0d1b2a 100%); padding: 80px 24px 60px; text-align: center; position: relative; overflow: hidden; }
+    .blog-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 20% 50%, rgba(212,175,55,0.08) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(74,155,142,0.08) 0%, transparent 50%); }
+    .blog-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 3.5rem); color: #fff; font-weight: 700; position: relative; }
+    .blog-hero h1 span { color: var(--gold); }
+    .blog-hero p { color: #8892a0; font-size: 1.1rem; max-width: 600px; margin: 16px auto 0; position: relative; line-height: 1.7; }
+
+    /* search */
+    .search-wrap { max-width: 600px; margin: -28px auto 48px; padding: 0 24px; position: relative; z-index: 10; }
+    .search-wrap input { width: 100%; padding: 16px 20px 16px 48px; border-radius: 12px; border: 1px solid #e0e4ea; font-size: 0.95rem; background: #fff; box-shadow: 0 4px 20px rgba(0,0,0,0.06); outline: none; transition: box-shadow 0.3s, border-color 0.3s; }
+    .search-wrap input:focus { border-color: var(--gold); box-shadow: 0 4px 28px rgba(212,175,55,0.15); }
+    .search-wrap .icon { position: absolute; left: 40px; top: 50%; transform: translateY(-50%); color: #9ca3af; font-size: 1.1rem; pointer-events: none; }
+
+    /* blog grid */
+    .blog-grid-wrap { max-width: 1280px; margin: 0 auto; padding: 0 24px 80px; }
+    .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 28px; }
+
+    /* blog card */
+    .blog-card { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.05); cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; border: 1px solid #edf0f5; }
+    .blog-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
+    .blog-card .card-img { height: 200px; background: linear-gradient(135deg, var(--navy) 0%, #2a3f5f 100%); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .blog-card .card-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(212,175,55,0.1) 0%, transparent 50%, rgba(74,155,142,0.1) 100%); }
+    .blog-card .card-img .icon { font-size: 3rem; opacity: 0.2; color: var(--gold); }
+    .blog-card .card-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
+    .blog-card .card-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+    .blog-card .card-cat { display: inline-block; background: rgba(212,175,55,0.1); color: #b8962e; font-size: 0.72rem; font-weight: 600; padding: 4px 12px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .blog-card .card-date { font-size: 0.78rem; color: #8892a0; }
+    .blog-card .card-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 600; color: var(--navy); margin-bottom: 10px; line-height: 1.4; }
+    .blog-card .card-excerpt { font-size: 0.88rem; color: #5a6577; line-height: 1.6; flex: 1; }
+    .blog-card .card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 16px; padding-top: 14px; border-top: 1px solid #edf0f5; }
+    .blog-card .card-read { font-size: 0.78rem; color: #8892a0; }
+    .blog-card .card-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .blog-card .card-tag { font-size: 0.68rem; color: var(--teal); background: rgba(74,155,142,0.08); padding: 2px 8px; border-radius: 4px; }
+
+    /* modal */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 24px; opacity: 0; transition: opacity 0.3s ease; }
+    .modal-overlay.open { display: flex; opacity: 1; }
+    .modal-overlay.show { display: flex; }
+    .modal-content { background: #fff; border-radius: 20px; max-width: 720px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 48px 40px; position: relative; box-shadow: 0 24px 80px rgba(0,0,0,0.2); transform: translateY(20px); transition: transform 0.3s ease; }
+    .modal-overlay.open .modal-content { transform: translateY(0); }
+    .modal-close { position: absolute; top: 16px; right: 20px; background: none; border: none; font-size: 1.5rem; color: #8892a0; cursor: pointer; padding: 4px 8px; border-radius: 8px; transition: background 0.2s, color 0.2s; }
+    .modal-close:hover { background: #f0f2f5; color: var(--charcoal); }
+    .modal-cat { display: inline-block; background: rgba(212,175,55,0.1); color: #b8962e; font-size: 0.72rem; font-weight: 600; padding: 4px 12px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px; }
+    .modal-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--navy); margin-bottom: 12px; line-height: 1.3; }
+    .modal-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; font-size: 0.85rem; color: #8892a0; flex-wrap: wrap; }
+    .modal-meta .sep { width: 4px; height: 4px; background: #d0d5dd; border-radius: 50%; }
+    .modal-body h3 { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--navy); margin-top: 28px; margin-bottom: 12px; }
+    .modal-body p { font-size: 0.95rem; line-height: 1.8; color: #4a5568; margin-bottom: 16px; }
+    .modal-body p:last-child { margin-bottom: 0; }
+    .modal-footer { margin-top: 32px; padding-top: 20px; border-top: 1px solid #edf0f5; }
+    .modal-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+    .modal-tag { font-size: 0.78rem; color: var(--teal); background: rgba(74,155,142,0.08); padding: 4px 12px; border-radius: 6px; }
+
+    /* empty state */
+    .empty-state { text-align: center; padding: 60px 24px; color: #8892a0; }
+    .empty-state .icon { font-size: 3rem; margin-bottom: 16px; opacity: 0.4; }
+    .empty-state h3 { font-family: 'Playfair Display', serif; color: var(--navy); margin-bottom: 8px; }
+
+    /* responsive */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .menu-toggle { display: block; }
+      .blog-grid { grid-template-columns: 1fr; }
+      .modal-content { padding: 32px 24px; }
+      .modal-title { font-size: 1.4rem; }
+    }
+    @media (min-width: 769px) {
+      .mobile-menu { display: none !important; }
+    }
+
+    /* dark mode */
+    body.dark-mode { background: #0f172a; color: #cbd5e1; }
+    body.dark-mode .top-nav { background: #0a0f1a; }
+    body.dark-mode .blog-hero { background: linear-gradient(135deg, #0a0f1a 0%, #020617 100%); }
+    body.dark-mode .search-wrap input { background: #1e293b; border-color: #334155; color: #e2e8f0; }
+    body.dark-mode .search-wrap input:focus { border-color: var(--gold); }
+    body.dark-mode .blog-card { background: #1e293b; border-color: #334155; }
+    body.dark-mode .blog-card .card-title { color: #f1f5f9; }
+    body.dark-mode .blog-card .card-excerpt { color: #94a3b8; }
+    body.dark-mode .blog-card .card-footer { border-color: #334155; }
+    body.dark-mode .modal-content { background: #1e293b; }
+    body.dark-mode .modal-title { color: #f1f5f9; }
+    body.dark-mode .modal-body h3 { color: #f1f5f9; }
+    body.dark-mode .modal-body p { color: #94a3b8; }
+    body.dark-mode .modal-footer { border-color: #334155; }
+    body.dark-mode .modal-close:hover { background: #334155; color: #e2e8f0; }
+  </style>
+</head>
+<body>
+
+  <!-- ====== NAV ====== -->
+  <nav class="top-nav">
+    <div class="inner">
+      <a href="index.html" class="logo">Ogbaji's <span>Expert Solutions</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="blog.html" class="active">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="about-ceo.html">CEO</a></li>
+        <li><a href="follow-us.html">Follow Us</a></li>
+      </ul>
+      <button class="menu-toggle" onclick="document.getElementById('mobileMenu').classList.toggle('open')">☰</button>
+    </div>
+    <div id="mobileMenu" class="mobile-menu" style="max-width:1280px;margin:0 auto;padding-left:8px;padding-right:8px;">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <a href="about-ceo.html">CEO</a>
+      <a href="follow-us.html">Follow Us</a>
+    </div>
+  </nav>
+
+  <!-- ====== HERO ====== -->
+  <section class="blog-hero">
+    <h1>Our <span>Blog</span></h1>
+    <p>Insights, strategies, and thought leadership from the team at Ogbaji's Expert Solutions.</p>
+  </section>
+
+  <!-- ====== SEARCH ====== -->
+  <div class="search-wrap">
+    <span class="icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="Search articles..." oninput="filterPosts()">
+  </div>
+
+  <!-- ====== BLOG GRID ====== -->
+  <section class="blog-grid-wrap">
+    <div id="blogGrid" class="blog-grid"></div>
+    <div id="emptyState" class="empty-state" style="display:none;">
+      <div class="icon">📭</div>
+      <h3>No posts found</h3>
+      <p>Try adjusting your search terms.</p>
+    </div>
+  </section>
+
+  <!-- ====== MODAL ====== -->
+  <div id="modalOverlay" class="modal-overlay" onclick="closeModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div id="modalCat" class="modal-cat"></div>
+      <h2 id="modalTitle" class="modal-title"></h2>
+      <div class="modal-meta">
+        <span id="modalDate"></span>
+        <span class="sep"></span>
+        <span id="modalReadTime"></span>
+        <span class="sep"></span>
+        <span id="modalAuthor"></span>
+      </div>
+      <div id="modalBody" class="modal-body"></div>
+      <div class="modal-footer">
+        <div id="modalTags" class="modal-tags"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="site-footer">
+    <div class="container-wide">
+      <div class="grid md:grid-cols-3 gap-8 py-12">
+        <div>
+          <div class="text-2xl font-display font-bold mb-4 gradient-text">Ogbaji's Expert Solutions</div>
+          <p class="text-gray-400 text-sm leading-relaxed">Transforming businesses through innovative solutions and strategic expertise.</p>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-4 uppercase tracking-wider text-sm">Quick Links</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="index.html" class="text-gray-400 hover:text-white transition">Home</a></li>
+            <li><a href="about.html" class="text-gray-400 hover:text-white transition">About</a></li>
+            <li><a href="services.html" class="text-gray-400 hover:text-white transition">Services</a></li>
+            <li><a href="contact.html" class="text-gray-400 hover:text-white transition">Contact</a></li>
+            <li><a href="blog.html" class="text-gray-400 hover:text-white transition">Blog</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-4 uppercase tracking-wider text-sm">Connect</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="about-ceo.html" class="text-gray-400 hover:text-white transition">Meet the CEO</a></li>
+            <li><a href="follow-us.html" class="text-gray-400 hover:text-white transition">Follow Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-gray-700 pt-8 pb-4">
+        <p class="text-gray-500 text-sm text-center">&copy; <span id="year"></span> Ogbaji's Expert Solutions. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    (function() {
+      var dm = localStorage.getItem('darkMode');
+      if (dm === 'true') document.body.classList.add('dark-mode');
+    })();
+
+    let allPosts = [];
+
+    function formatDate(dateStr) {
+      const d = new Date(dateStr);
+      return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    }
+
+    function renderPosts(posts) {
+      const grid = document.getElementById('blogGrid');
+      const empty = document.getElementById('emptyState');
+      if (!posts.length) {
+        grid.innerHTML = '';
+        empty.style.display = 'block';
+        return;
+      }
+      empty.style.display = 'none';
+      grid.innerHTML = posts.map(p => `
+        <div class="blog-card" onclick="openPost('${p.id}')">
+          <div class="card-img">
+            <div class="icon">✦</div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-cat">${p.category}</span>
+              <span class="card-date">${formatDate(p.date)}</span>
+            </div>
+            <h3 class="card-title">${p.title}</h3>
+            <p class="card-excerpt">${p.excerpt}</p>
+            <div class="card-footer">
+              <span class="card-read">${p.readTime}</span>
+              <div class="card-tags">
+                ${p.tags.slice(0, 2).map(t => `<span class="card-tag">#${t}</span>`).join('')}
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function filterPosts() {
+      const q = document.getElementById('searchInput').value.toLowerCase().trim();
+      if (!q) { renderPosts(allPosts); return; }
+      const filtered = allPosts.filter(p =>
+        p.title.toLowerCase().includes(q) ||
+        p.excerpt.toLowerCase().includes(q) ||
+        p.category.toLowerCase().includes(q) ||
+        p.tags.some(t => t.toLowerCase().includes(q))
+      );
+      renderPosts(filtered);
+    }
+
+    function openPost(id) {
+      const post = allPosts.find(p => p.id === id);
+      if (!post) return;
+      document.getElementById('modalCat').textContent = post.category;
+      document.getElementById('modalTitle').textContent = post.title;
+      document.getElementById('modalDate').textContent = formatDate(post.date);
+      document.getElementById('modalReadTime').textContent = post.readTime;
+      document.getElementById('modalAuthor').textContent = post.author;
+      document.getElementById('modalBody').innerHTML = post.content.join('');
+      document.getElementById('modalTags').innerHTML = post.tags.map(t => `<span class="modal-tag">#${t}</span>`).join('');
+      const overlay = document.getElementById('modalOverlay');
+      overlay.classList.add('show');
+      setTimeout(() => overlay.classList.add('open'), 10);
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(e) {
+      if (e && e.target !== e.currentTarget) return;
+      const overlay = document.getElementById('modalOverlay');
+      overlay.classList.remove('open');
+      setTimeout(() => {
+        overlay.classList.remove('show');
+        document.body.style.overflow = '';
+      }, 300);
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        const overlay = document.getElementById('modalOverlay');
+        if (overlay.classList.contains('show')) closeModal();
+      }
+    });
+
+    fetch('assets/data/posts.json')
+      .then(r => r.json())
+      .then(posts => {
+        allPosts = posts;
+        renderPosts(posts);
+      })
+      .catch(() => {
+        document.getElementById('blogGrid').innerHTML = '<div class="empty-state"><div class="icon">⚠️</div><h3>Unable to load posts</h3><p>Please try again later.</p></div>';
+      });
+  </script>
+</body>
+</html>

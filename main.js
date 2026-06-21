@@ -76,74 +76,68 @@ function initTypewriter() {
     }
 }
 
-// Particle Background for Hero Section
+// Particle Background for Hero Section (vanilla canvas, ~5KB vs p5.js 200KB)
 function initParticles() {
     const canvas = document.getElementById('particles-canvas');
     if (!canvas) return;
     
+    const ctx = canvas.getContext('2d');
     let particles = [];
-    let mouse = { x: 0, y: 0 };
+    let animId = null;
     
-    // p5.js sketch for particle system
-    new p5(function(p) {
-        p.setup = function() {
-            const canvas = p.createCanvas(window.innerWidth, window.innerHeight);
-            canvas.parent('particles-canvas');
-            
-            // Create particles
-            for (let i = 0; i < 50; i++) {
-                particles.push({
-                    x: p.random(p.width),
-                    y: p.random(p.height),
-                    vx: p.random(-0.5, 0.5),
-                    vy: p.random(-0.5, 0.5),
-                    size: p.random(2, 6),
-                    opacity: p.random(0.3, 0.8)
-                });
-            }
-        };
+    function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    resize();
+    
+    for (let i = 0; i < 50; i++) {
+        particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            vx: (Math.random() - 0.5) * 0.8,
+            vy: (Math.random() - 0.5) * 0.8,
+            size: 2 + Math.random() * 4,
+            opacity: 0.3 + Math.random() * 0.5
+        });
+    }
+    
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
         
-        p.draw = function() {
-            p.clear();
+        particles.forEach(p => {
+            p.x += p.vx;
+            p.y += p.vy;
+            if (p.x < 0) p.x = canvas.width;
+            if (p.x > canvas.width) p.x = 0;
+            if (p.y < 0) p.y = canvas.height;
+            if (p.y > canvas.height) p.y = 0;
             
-            // Update and draw particles
-            particles.forEach(particle => {
-                // Update position
-                particle.x += particle.vx;
-                particle.y += particle.vy;
-                
-                // Wrap around edges
-                if (particle.x < 0) particle.x = p.width;
-                if (particle.x > p.width) particle.x = 0;
-                if (particle.y < 0) particle.y = p.height;
-                if (particle.y > p.height) particle.y = 0;
-                
-                // Draw particle
-                p.fill(255, 255, 255, particle.opacity * 255);
-                p.noStroke();
-                p.ellipse(particle.x, particle.y, particle.size);
-                
-                // Connect nearby particles
-                particles.forEach(other => {
-                    const distance = p.dist(particle.x, particle.y, other.x, other.y);
-                    if (distance < 100) {
-                        p.stroke(255, 255, 255, (1 - distance / 100) * 50);
-                        p.strokeWeight(1);
-                        p.line(particle.x, particle.y, other.x, other.y);
-                    }
-                });
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255,255,255,${p.opacity})`;
+            ctx.fill();
+            
+            particles.forEach(other => {
+                const dx = p.x - other.x;
+                const dy = p.y - other.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 100) {
+                    ctx.beginPath();
+                    ctx.moveTo(p.x, p.y);
+                    ctx.lineTo(other.x, other.y);
+                    ctx.strokeStyle = `rgba(255,255,255,${(1 - dist / 100) * 0.2})`;
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                }
             });
-        };
+        });
         
-        p.windowResized = function() {
-            p.resizeCanvas(window.innerWidth, window.innerHeight);
-        };
-        
-        p.mouseMoved = function() {
-            mouse.x = p.mouseX;
-            mouse.y = p.mouseY;
-        };
-    });
+        animId = requestAnimationFrame(draw);
+    }
+    
+    draw();
+    window.addEventListener('resize', resize);
 }
 
 // Portfolio Filter System
@@ -329,22 +323,32 @@ function initContactForm() {
             </svg>
             Sending...
         `;
-        
-        // Simulate form submission (replace with actual API call)
-        setTimeout(() => {
-            showMessage('success');
-            contactForm.reset();
-            
-            // Reset button
+
+        const formData = new FormData(contactForm);
+
+        fetch(contactForm.getAttribute('action'), {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+        })
+        .then(response => {
+            if (response.ok) {
+                showMessage('success');
+                contactForm.reset();
+                formInputs.forEach(input => {
+                    input.classList.remove('form-success', 'form-error');
+                });
+            } else {
+                showMessage('error');
+            }
+        })
+        .catch(() => {
+            showMessage('error');
+        })
+        .finally(() => {
             submitButton.disabled = false;
             submitButton.innerHTML = 'Send Message';
-            
-            // Remove validation classes
-            formInputs.forEach(input => {
-                input.classList.remove('form-success', 'form-error');
-            });
-            
-        }, 2000);
+        });
     }
     
     function showMessage(type) {
