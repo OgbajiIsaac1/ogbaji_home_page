@@ -1,13 +1,10 @@
----
-layout: null
----
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>{{ site.url }}{{ site.baseurl }}/</loc><priority>1.0</priority></url>
-  <url><loc>{{ site.url }}{{ site.baseurl }}/about.html</loc><priority>0.8</priority></url>
-  <url><loc>{{ site.url }}{{ site.baseurl }}/blog.html</loc><priority>0.8</priority></url>
-  <url><loc>{{ site.url }}{{ site.baseurl }}/about-ceo.html</loc><priority>0.8</priority></url>
-  <url><loc>{{ site.url }}{{ site.baseurl }}/services.html</loc><priority>0.8</priority></url>
-  <url><loc>{{ site.url }}{{ site.baseurl }}/contact.html</loc><priority>0.7</priority></url>
-  <url><loc>{{ site.url }}{{ site.baseurl }}/follow-us.html</loc><priority>0.5</priority></url>
+  <url><loc>https://ogbajiisaac1.github.io/ogbaji_home_page/</loc><priority>1.0</priority></url>
+  <url><loc>https://ogbajiisaac1.github.io/ogbaji_home_page/about.html</loc><priority>0.8</priority></url>
+  <url><loc>https://ogbajiisaac1.github.io/ogbaji_home_page/blog.html</loc><priority>0.8</priority></url>
+  <url><loc>https://ogbajiisaac1.github.io/ogbaji_home_page/about-ceo.html</loc><priority>0.8</priority></url>
+  <url><loc>https://ogbajiisaac1.github.io/ogbaji_home_page/services.html</loc><priority>0.8</priority></url>
+  <url><loc>https://ogbajiisaac1.github.io/ogbaji_home_page/contact.html</loc><priority>0.7</priority></url>
+  <url><loc>https://ogbajiisaac1.github.io/ogbaji_home_page/follow-us.html</loc><priority>0.5</priority></url>
 </urlset>
