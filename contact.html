@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,7 +12,7 @@
     <meta property="og:title" content="Contact Us | Ogbaji's Expert Solutions — Business Consulting Nigeria">
     <meta property="og:description" content="Get in touch with our expert business consultants. Schedule a consultation, request a quote, or learn more about our comprehensive business solutions.">
     <meta property="og:url" content="https://ogbajiisaac1.github.io/ogbaji_home_page/contact.html">
-    <meta property="og:image" content="https://ogbajiisaac1.github.io/ogbaji_home_page/resources/hero-image.png">
+    <meta property="og:image" content="https://ogbajiisaac1.github.io/ogbaji_home_page/assets/images/hero-image.webp">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Contact Us | Ogbaji's Expert Solutions — Business Consulting Nigeria">
     <meta name="twitter:description" content="Get in touch with our expert business consultants. Schedule a consultation, request a quote, or learn more.">
@@ -28,29 +28,7 @@
     
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="assets/css/main.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'primary': '#1a2332',
-                        'secondary': '#d4af37',
-                        'accent': '#4a9b8e',
-                        'neutral': '#f8f9fa',
-                        'text': '#2c3e50'
-                    },
-                    fontFamily: {
-                        'display': ['Playfair Display', 'serif'],
-                        'body': ['Inter', 'sans-serif'],
-                        'mono': ['Source Code Pro', 'monospace']
-                    }
-                }
-            }
-        }
-    </script>
-    
-
+    <link rel="stylesheet" href="assets/css/tailwind-build.css">
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -151,8 +129,21 @@
   }]
 }]
 </script>
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="favicon.svg">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-76VT6TTCXH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-76VT6TTCXH');
+  </script>
 </head>
 <body class="font-body text-text bg-neutral">
+  <a href='#main-content' class='skip-to-content sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-secondary focus:text-white focus:px-4 focus:py-2 focus:rounded'>Skip to content</a>
     <!-- Navigation -->
     <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
         <div class="container-wide">
@@ -170,7 +161,7 @@
                         <a href="blog.html" class="nav-link text-primary hover:text-secondary font-medium">Blog</a>
                         <a href="about-ceo.html" class="nav-link text-primary hover:text-secondary font-medium">CEO</a>
                         <a href="services.html" class="nav-link text-primary hover:text-secondary font-medium">Services</a>
-                        <a href="contact.html" class="nav-link active text-primary hover:text-secondary font-medium">Contact</a>
+                        <a href="contact.html" class="nav-link active text-secondary font-medium" href="#" aria-current="page">Contact</a>
                         <a href="follow-us.html" class="nav-link text-primary hover:text-secondary font-medium">Follow Us</a>
                         <button id="theme-toggle" class="text-primary hover:text-secondary transition-colors" aria-label="Toggle dark mode">
                             <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -184,7 +175,7 @@
                 </div>
                 
                 <div class="md:hidden">
-                    <button id="mobile-menu-btn" class="text-primary hover:text-secondary">
+                    <button id="mobile-menu-btn" class="text-primary hover:text-secondary" aria-expanded="false">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
@@ -208,7 +199,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="pt-24 pb-16 bg-gradient-to-br from-primary to-accent text-white">
+    <main id="main-content"><section class="$2 pb-16 bg-gradient-to-br from-primary to-accent text-white">
         <div class="container-wide text-center">
             <h1 class="text-5xl md:text-6xl font-display font-bold mb-6 reveal">
                 Contact <span class="text-secondary">Us</span>
@@ -491,12 +482,21 @@
               <li><a href="follow-us.html" class="text-gray-400 hover:text-white transition">Follow Us</a></li>
             </ul>
           </div>
-        </div>
+                  <div>
+            <h4 class="text-white font-semibold mb-4 uppercase tracking-wider text-sm">Newsletter</h4>
+            <p class="text-gray-400 text-xs mb-3">Get the latest insights delivered to your inbox.</p>
+            <form action="https://formsubmit.co/ogbajiisaac@gmail.com" method="POST" class="flex gap-2">
+              <input type="email" name="email" placeholder="Your email" required class="flex-1 px-3 py-2 rounded text-sm bg-gray-800 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:border-secondary">
+              <input type="hidden" name="_subject" value="Newsletter Signup">
+              <input type="hidden" name="_next" value="https://ogbajiisaac1.github.io/ogbaji_home_page/">
+              <button type="submit" class="bg-secondary hover:bg-yellow-600 text-white px-3 py-2 rounded text-sm font-medium transition">Join</button>
+            </form>
+          </div></div>
         <div class="border-t border-gray-700 pt-8 pb-4">
           <p class="text-gray-500 text-sm text-center">&copy; <span id="year"></span> Ogbaji's Expert Solutions. All rights reserved.</p>
         </div>
       </div>
-    </footer>
+    </main></footer>
 
     <script src="main.js"></script>
     <script>
@@ -525,5 +525,12 @@
             });
         });
     </script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function() {
+        navigator.serviceWorker.register("sw.js");
+      });
+    }
+  </script>
 </body>
 </html>

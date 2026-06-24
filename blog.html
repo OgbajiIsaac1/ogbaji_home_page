@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -8,22 +8,12 @@
   <meta name="keywords" content="business blog Nigeria, digital transformation insights, business strategy articles, AI in business, thought leadership Africa">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#1a2332">
-  <meta property="og:image" content="https://ogbajiisaac1.github.io/ogbaji_home_page/resources/hero-image.png">
+  <meta property="og:image" content="https://ogbajiisaac1.github.io/ogbaji_home_page/assets/images/hero-image.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { display: ['Playfair Display', 'serif'], body: ['Inter', 'sans-serif'], mono: ['Source Code Pro', 'monospace'] },
-          colors: { navy: '#1a2332', gold: '#d4af37', teal: '#4a9b8e', charcoal: '#2c3e50' }
-        }
-      }
-    }
-  </script>
   <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/tailwind-build.css">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="canonical" href="https://ogbajiisaac1.github.io/ogbaji_home_page/blog.html">
   <script type="application/ld+json">
@@ -72,20 +62,6 @@
     :root { --navy: #1a2332; --gold: #d4af37; --teal: #4a9b8e; --light: #f8f9fa; --charcoal: #2c3e50; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Inter', sans-serif; background: var(--light); color: var(--charcoal); overflow-x: hidden; }
-
-    /* nav */
-    .top-nav { background: var(--navy); padding: 0 24px; position: sticky; top: 0; z-index: 1000; }
-    .top-nav .inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
-    .top-nav .logo { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; color: #fff; text-decoration: none; }
-    .top-nav .logo span { color: var(--gold); }
-    .nav-links { display: flex; gap: 28px; list-style: none; }
-    .nav-links a { color: #b0b8c5; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
-    .menu-toggle { display: none; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
-    .mobile-menu { display: none; flex-direction: column; gap: 12px; padding: 16px 0 20px; }
-    .mobile-menu a { color: #b0b8c5; text-decoration: none; font-size: 0.95rem; padding: 6px 0; transition: color 0.3s; }
-    .mobile-menu a:hover { color: var(--gold); }
-    .mobile-menu.open { display: flex; }
 
     /* hero */
     .blog-hero { background: linear-gradient(135deg, var(--navy) 0%, #0d1b2a 100%); padding: 80px 24px 60px; text-align: center; position: relative; overflow: hidden; }
@@ -147,19 +123,13 @@
 
     /* responsive */
     @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .menu-toggle { display: block; }
       .blog-grid { grid-template-columns: 1fr; }
       .modal-content { padding: 32px 24px; }
       .modal-title { font-size: 1.4rem; }
     }
-    @media (min-width: 769px) {
-      .mobile-menu { display: none !important; }
-    }
 
     /* dark mode */
     html[data-theme="dark"] body { background: #0f172a; color: #cbd5e1; }
-    html[data-theme="dark"] .top-nav { background: #0a0f1a; }
     html[data-theme="dark"] .blog-hero { background: linear-gradient(135deg, #0a0f1a 0%, #020617 100%); }
     html[data-theme="dark"] .search-wrap input { background: #1e293b; border-color: #334155; color: #e2e8f0; }
     html[data-theme="dark"] .search-wrap input:focus { border-color: var(--gold); }
@@ -175,39 +145,76 @@
     html[data-theme="dark"] .modal-close:hover { background: #334155; color: #e2e8f0; }
     /* blog empty state dark */
     html[data-theme="dark"] .empty-state h3 { color: #f1f5f9; }
-    /* theme toggle */
-    .theme-toggle-blog { background: none; border: 1px solid rgba(255,255,255,0.2); color: #b0b8c5; cursor: pointer; padding: 6px 10px; border-radius: 8px; font-size: 1rem; transition: all 0.3s; margin-left: 12px; }
-    .theme-toggle-blog:hover { color: var(--gold); border-color: var(--gold); }
+
   </style>
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="favicon.svg">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-76VT6TTCXH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-76VT6TTCXH');
+  </script>
 </head>
 <body>
+  <a href='#main-content' class='skip-to-content sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-secondary focus:text-white focus:px-4 focus:py-2 focus:rounded'>Skip to content</a>
 
-  <!-- ====== NAV ====== -->
-  <nav class="top-nav">
-    <div class="inner">
-      <a href="index.html" class="logo">Ogbaji's <span>Expert Solutions</span></a>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="blog.html" class="active">Blog</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="about-ceo.html">CEO</a></li>
-        <li><a href="follow-us.html">Follow Us</a></li>
-        <li><button id="themeToggleBlog" class="theme-toggle-blog" aria-label="Toggle dark mode">🌙</button></li>
-      </ul>
-      <button class="menu-toggle" onclick="document.getElementById('mobileMenu').classList.toggle('open')">☰</button>
-    </div>
-    <div id="mobileMenu" class="mobile-menu" style="max-width:1280px;margin:0 auto;padding-left:8px;padding-right:8px;">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="services.html">Services</a>
-      <a href="blog.html">Blog</a>
-      <a href="contact.html">Contact</a>
-      <a href="about-ceo.html">CEO</a>
-      <a href="follow-us.html">Follow Us</a>
-    </div>
-  </nav>
+<!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
+        <div class="container-wide">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="text-2xl font-display font-bold text-primary">
+                        <span class="gradient-text">Ogbaji's Expert Solutions</span>
+                    </div>
+                </div>
+                
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="nav-link text-primary hover:text-secondary font-medium">Home</a>
+                        <a href="about.html" class="nav-link text-primary hover:text-secondary font-medium">About</a>
+                        <a href="services.html" class="nav-link text-primary hover:text-secondary font-medium">Services</a>
+                        <a href="blog.html" class="nav-link active text-secondary font-medium" href="#" aria-current="page">Blog</a>
+                        <a href="contact.html" class="nav-link text-primary hover:text-secondary font-medium">Contact</a>
+                        <a href="about-ceo.html" class="nav-link text-primary hover:text-secondary font-medium">CEO</a>
+                        <a href="follow-us.html" class="nav-link text-primary hover:text-secondary font-medium">Follow Us</a>
+                        <button id="theme-toggle" class="text-primary hover:text-secondary transition-colors" aria-label="Toggle dark mode">
+                            <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                            </svg>
+                            <svg class="w-5 h-5 hidden dark:inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-primary hover:text-secondary" aria-expanded="false">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 text-primary hover:text-secondary font-medium">Home</a>
+                <a href="about.html" class="block px-3 py-2 text-primary hover:text-secondary font-medium">About</a>
+                <a href="services.html" class="block px-3 py-2 text-primary hover:text-secondary font-medium">Services</a>
+                <a href="blog.html" class="block px-3 py-2 text-primary hover:text-secondary font-medium">Blog</a>
+                <a href="contact.html" class="block px-3 py-2 text-primary hover:text-secondary font-medium">Contact</a>
+                <a href="about-ceo.html" class="block px-3 py-2 text-primary hover:text-secondary font-medium">CEO</a>
+                <a href="follow-us.html" class="block px-3 py-2 text-primary hover:text-secondary font-medium">Follow Us</a>
+            </div>
+        </div>
+    </nav>
 
   <!-- ====== HERO ====== -->
   <section class="blog-hero">
@@ -237,8 +244,7 @@
   </section>
 
   <!-- ====== MODAL ====== -->
-  <div id="modalOverlay" class="modal-overlay" onclick="closeModal(event)">
-    <div class="modal-content" onclick="event.stopPropagation()">
+  <div id="modalOverlay" class="modal-overlay" onclick="closeModal(event)" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
       <button class="modal-close" onclick="closeModal()">✕</button>
       <div id="modalCat" class="modal-cat"></div>
       <h2 id="modalTitle" class="modal-title"></h2>
@@ -281,7 +287,16 @@
             <li><a href="follow-us.html" class="text-gray-400 hover:text-white transition">Follow Us</a></li>
           </ul>
         </div>
-      </div>
+                <div>
+            <h4 class="text-white font-semibold mb-4 uppercase tracking-wider text-sm">Newsletter</h4>
+            <p class="text-gray-400 text-xs mb-3">Get the latest insights delivered to your inbox.</p>
+            <form action="https://formsubmit.co/ogbajiisaac@gmail.com" method="POST" class="flex gap-2">
+              <input type="email" name="email" placeholder="Your email" required class="flex-1 px-3 py-2 rounded text-sm bg-gray-800 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:border-secondary">
+              <input type="hidden" name="_subject" value="Newsletter Signup">
+              <input type="hidden" name="_next" value="https://ogbajiisaac1.github.io/ogbaji_home_page/">
+              <button type="submit" class="bg-secondary hover:bg-yellow-600 text-white px-3 py-2 rounded text-sm font-medium transition">Join</button>
+            </form>
+          </div></div>
       <div class="border-t border-gray-700 pt-8 pb-4">
         <p class="text-gray-500 text-sm text-center">&copy; <span id="year"></span> Ogbaji's Expert Solutions. All rights reserved.</p>
       </div>
@@ -306,32 +321,7 @@
       });
     })();
 
-    // Dark mode — align with main site (data-theme + theme key)
-    (function() {
-      var theme = localStorage.getItem('theme');
-      if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        document.documentElement.classList.add('dark');
-      }
-      var btn = document.getElementById('themeToggleBlog');
-      if (btn) {
-        btn.textContent = document.documentElement.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\uD83C\uDF19';
-        btn.addEventListener('click', function() {
-          var dark = document.documentElement.getAttribute('data-theme') === 'dark';
-          if (dark) {
-            document.documentElement.removeAttribute('data-theme');
-            document.documentElement.classList.remove('dark');
-            localStorage.setItem('theme', 'light');
-            btn.textContent = '\uD83C\uDF19';
-          } else {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            document.documentElement.classList.add('dark');
-            localStorage.setItem('theme', 'dark');
-            btn.textContent = '\u2600\uFE0F';
-          }
-        });
-      }
-    })();
+    // Dark mode — using standard main.js handler via theme-toggle button
 
     let allPosts = [];
 
@@ -475,6 +465,13 @@
         if (spinner) spinner.style.display = 'none';
         document.getElementById('blogGrid').innerHTML = '<div class="empty-state"><div class="icon">⚠️</div><h3>Unable to load posts</h3><p>Please try again later.</p></div>';
       });
+  </script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function() {
+        navigator.serviceWorker.register("sw.js");
+      });
+    }
   </script>
 </body>
 </html>

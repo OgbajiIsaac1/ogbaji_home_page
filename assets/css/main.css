@@ -129,14 +129,14 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ====== 6. HERO SECTIONS ====== */
 .hero-bg {
-  background: linear-gradient(135deg, rgba(26,35,50,0.9), rgba(74,155,142,0.8)), url('resources/hero-image.png');
+  background: linear-gradient(135deg, rgba(26,35,50,0.9), rgba(74,155,142,0.8)), url('../../resources/hero-image.png');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
 }
 
 .hero-gradient {
-  background: linear-gradient(135deg, rgba(26,35,50,0.92), rgba(74,155,142,0.85)), url('resources/hero-image.png');
+  background: linear-gradient(135deg, rgba(26,35,50,0.92), rgba(74,155,142,0.85)), url('../../resources/hero-image.png');
   background-size: cover;
   background-position: center;
 }
@@ -169,21 +169,6 @@ h1, h2, h3, h4, h5, h6 {
 .card-hover { transition: all 0.3s ease; }
 .card-hover:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
 
-/* Modern card */
-.card-modern {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 1rem;
-  padding: 1.5rem;
-  transition: all 0.3s ease;
-}
-
-.card-modern:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.08);
-  border-color: rgba(212,175,55,0.3);
-}
-
 /* Gradient accent bar */
 .accent-bar {
   width: 60px;
@@ -194,24 +179,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .accent-bar-center { margin-left: auto; margin-right: auto; }
-
-/* Subtle gradient button */
-.btn-gradient {
-  display: inline-block;
-  padding: 12px 28px;
-  border-radius: 10px;
-  font-weight: 600;
-  color: #fff;
-  background: linear-gradient(135deg, #d4af37, #b8962e);
-  transition: all 0.3s ease;
-  text-decoration: none;
-}
-
-.btn-gradient:hover {
-  background: linear-gradient(135deg, #c49f30, #a08020);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(212,175,55,0.3);
-}
 
 /* WhatsApp buttons */
 .whatsapp-btn {
@@ -299,11 +266,6 @@ h1, h2, h3, h4, h5, h6 {
 .service-item { transition: all 0.3s ease; }
 .service-item.hidden { opacity: 0; transform: scale(0.8); pointer-events: none; }
 
-/* Pricing cards (services.html) */
-.pricing-card { transition: all 0.3s ease; }
-.pricing-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
-.pricing-card.featured { border: 2px solid #d4af37; transform: scale(1.05); }
-
 /* Process steps (services.html) */
 .process-step { position: relative; }
 
@@ -330,12 +292,6 @@ h1, h2, h3, h4, h5, h6 {
 
 /* CEO page (about-ceo.html) */
 .ceo-portrait { box-shadow: 0 25px 50px -12px rgba(0,0,0,0.3); }
-
-.stat-card {
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,0.12);
-}
 
 .content-paragraph { max-width: 42rem; margin-left: auto; margin-right: auto; }
 
@@ -413,8 +369,6 @@ h1, h2, h3, h4, h5, h6 {
   background: linear-gradient(135deg, #0f172a, #1e293b);
 }
 
-.fade-in-up { opacity: 0; transform: translateY(30px); transition: all 0.7s ease; }
-.fade-in-up.visible { opacity: 1; transform: translateY(0); }
 .scroll-mt { scroll-margin-top: 5rem; }
 
 /* ====== 8. FOOTER ====== */
@@ -439,21 +393,6 @@ h1, h2, h3, h4, h5, h6 {
 
 [data-theme="dark"] .section-gradient {
   background: linear-gradient(135deg, #0f172a, rgba(212,175,55,0.05));
-}
-
-.section-subtle {
-  background: var(--bg-card);
-}
-
-/* Glass nav */
-nav.glass {
-  background: rgba(255,255,255,0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
-
-[data-theme="dark"] nav.glass {
-  background: rgba(15,23,42,0.85);
 }
 
 /* ====== 9. DARK MODE OVERRIDES ====== */

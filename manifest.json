@@ -1,0 +1,17 @@
+{
+  "name": "Ogbaji's Expert Solutions",
+  "short_name": "Ogbaji Expert",
+  "description": "Business consulting and digital transformation services in Nigeria.",
+  "start_url": "/ogbaji_home_page/",
+  "display": "standalone",
+  "background_color": "#1a2332",
+  "theme_color": "#1a2332",
+  "icons": [
+    {
+      "src": "/ogbaji_home_page/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
