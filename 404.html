@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 — Page Not Found | Ogbaji's Expert Solutions</title>
+    <meta name="description" content="The page you're looking for doesn't exist. Return to Ogbaji's Expert Solutions homepage.">
+    <meta name="robots" content="noindex, follow">
+    <meta name="theme-color" content="#1a2332">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="canonical" href="https://ogbajiisaac1.github.io/ogbaji_home_page/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { 'primary': '#1a2332', 'secondary': '#d4af37', 'accent': '#4a9b8e', 'neutral': '#f8f9fa', 'text': '#2c3e50' },
+                    fontFamily: { 'display': ['Playfair Display', 'serif'], 'body': ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-body text-text bg-neutral min-h-screen flex flex-col">
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
+        <div class="container-wide">
+            <div class="flex justify-between items-center h-16">
+                <div class="text-2xl font-display font-bold text-primary">
+                    <span class="gradient-text">Ogbaji's Expert Solutions</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link text-primary hover:text-secondary font-medium">Home</a>
+                    <a href="about.html" class="nav-link text-primary hover:text-secondary font-medium">About</a>
+                    <a href="services.html" class="nav-link text-primary hover:text-secondary font-medium">Services</a>
+                    <a href="contact.html" class="nav-link text-primary hover:text-secondary font-medium">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="flex-1 flex items-center justify-center pt-24 pb-20">
+        <div class="container-wide text-center reveal active">
+            <h1 class="text-9xl md:text-[10rem] font-display font-bold text-secondary mb-4">404</h1>
+            <h2 class="text-3xl md:text-4xl font-display font-bold text-primary mb-6">Page Not Found</h2>
+            <p class="text-lg text-gray-600 max-w-xl mx-auto mb-10 leading-relaxed">
+                The page you're looking for doesn't exist or has been moved.<br>
+                Let's get you back on track.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="index.html" class="bg-secondary hover:bg-yellow-600 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105">
+                    Back to Home
+                </a>
+                <a href="contact.html" class="border-2 border-secondary text-secondary hover:bg-secondary hover:text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300">
+                    Contact Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer mt-auto">
+        <div class="container-wide py-8">
+            <p class="text-gray-500 text-sm text-center">&copy; <span id="year"></span> Ogbaji's Expert Solutions. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

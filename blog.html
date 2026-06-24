@@ -158,21 +158,26 @@
     }
 
     /* dark mode */
-    body.dark-mode { background: #0f172a; color: #cbd5e1; }
-    body.dark-mode .top-nav { background: #0a0f1a; }
-    body.dark-mode .blog-hero { background: linear-gradient(135deg, #0a0f1a 0%, #020617 100%); }
-    body.dark-mode .search-wrap input { background: #1e293b; border-color: #334155; color: #e2e8f0; }
-    body.dark-mode .search-wrap input:focus { border-color: var(--gold); }
-    body.dark-mode .blog-card { background: #1e293b; border-color: #334155; }
-    body.dark-mode .blog-card .card-title { color: #f1f5f9; }
-    body.dark-mode .blog-card .card-excerpt { color: #94a3b8; }
-    body.dark-mode .blog-card .card-footer { border-color: #334155; }
-    body.dark-mode .modal-content { background: #1e293b; }
-    body.dark-mode .modal-title { color: #f1f5f9; }
-    body.dark-mode .modal-body h3 { color: #f1f5f9; }
-    body.dark-mode .modal-body p { color: #94a3b8; }
-    body.dark-mode .modal-footer { border-color: #334155; }
-    body.dark-mode .modal-close:hover { background: #334155; color: #e2e8f0; }
+    html[data-theme="dark"] body { background: #0f172a; color: #cbd5e1; }
+    html[data-theme="dark"] .top-nav { background: #0a0f1a; }
+    html[data-theme="dark"] .blog-hero { background: linear-gradient(135deg, #0a0f1a 0%, #020617 100%); }
+    html[data-theme="dark"] .search-wrap input { background: #1e293b; border-color: #334155; color: #e2e8f0; }
+    html[data-theme="dark"] .search-wrap input:focus { border-color: var(--gold); }
+    html[data-theme="dark"] .blog-card { background: #1e293b; border-color: #334155; }
+    html[data-theme="dark"] .blog-card .card-title { color: #f1f5f9; }
+    html[data-theme="dark"] .blog-card .card-excerpt { color: #94a3b8; }
+    html[data-theme="dark"] .blog-card .card-footer { border-color: #334155; }
+    html[data-theme="dark"] .modal-content { background: #1e293b; }
+    html[data-theme="dark"] .modal-title { color: #f1f5f9; }
+    html[data-theme="dark"] .modal-body h3 { color: #f1f5f9; }
+    html[data-theme="dark"] .modal-body p { color: #94a3b8; }
+    html[data-theme="dark"] .modal-footer { border-color: #334155; }
+    html[data-theme="dark"] .modal-close:hover { background: #334155; color: #e2e8f0; }
+    /* blog empty state dark */
+    html[data-theme="dark"] .empty-state h3 { color: #f1f5f9; }
+    /* theme toggle */
+    .theme-toggle-blog { background: none; border: 1px solid rgba(255,255,255,0.2); color: #b0b8c5; cursor: pointer; padding: 6px 10px; border-radius: 8px; font-size: 1rem; transition: all 0.3s; margin-left: 12px; }
+    .theme-toggle-blog:hover { color: var(--gold); border-color: var(--gold); }
   </style>
 </head>
 <body>
@@ -189,6 +194,7 @@
         <li><a href="contact.html">Contact</a></li>
         <li><a href="about-ceo.html">CEO</a></li>
         <li><a href="follow-us.html">Follow Us</a></li>
+        <li><button id="themeToggleBlog" class="theme-toggle-blog" aria-label="Toggle dark mode">🌙</button></li>
       </ul>
       <button class="menu-toggle" onclick="document.getElementById('mobileMenu').classList.toggle('open')">☰</button>
     </div>
@@ -217,7 +223,12 @@
 
   <!-- ====== BLOG GRID ====== -->
   <section class="blog-grid-wrap">
-    <div id="blogGrid" class="blog-grid"></div>
+    <div id="blogGrid" class="blog-grid">
+      <div class="blog-spinner" id="blogSpinner">
+        <div class="spinner"></div>
+        <p>Loading articles...</p>
+      </div>
+    </div>
     <div id="emptyState" class="empty-state" style="display:none;">
       <div class="icon">📭</div>
       <h3>No posts found</h3>
@@ -280,28 +291,67 @@
   <script src="main.js"></script>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Back to Top
     (function() {
-      var dm = localStorage.getItem('darkMode');
-      if (dm === 'true') document.body.classList.add('dark-mode');
+      var btn = document.createElement('button');
+      btn.id = 'back-to-top';
+      btn.className = 'back-to-top';
+      btn.setAttribute('aria-label', 'Back to top');
+      btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg>';
+      document.body.appendChild(btn);
+      btn.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 400) btn.classList.add('visible'); else btn.classList.remove('visible');
+      });
+    })();
+
+    // Dark mode — align with main site (data-theme + theme key)
+    (function() {
+      var theme = localStorage.getItem('theme');
+      if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        document.documentElement.classList.add('dark');
+      }
+      var btn = document.getElementById('themeToggleBlog');
+      if (btn) {
+        btn.textContent = document.documentElement.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\uD83C\uDF19';
+        btn.addEventListener('click', function() {
+          var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+          if (dark) {
+            document.documentElement.removeAttribute('data-theme');
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+            btn.textContent = '\uD83C\uDF19';
+          } else {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+            btn.textContent = '\u2600\uFE0F';
+          }
+        });
+      }
     })();
 
     let allPosts = [];
 
     function formatDate(dateStr) {
-      const d = new Date(dateStr);
+      var d = new Date(dateStr);
       return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
     }
 
     function renderPosts(posts) {
-      const grid = document.getElementById('blogGrid');
-      const empty = document.getElementById('emptyState');
+      var grid = document.getElementById('blogGrid');
+      var empty = document.getElementById('emptyState');
+      var spinner = document.getElementById('blogSpinner');
+      if (spinner) spinner.style.display = 'none';
       if (!posts.length) {
         grid.innerHTML = '';
         empty.style.display = 'block';
         return;
       }
       empty.style.display = 'none';
-      grid.innerHTML = posts.map(p => `
+      grid.innerHTML = posts.map(function(p) { return `
         <div class="blog-card" onclick="openPost('${p.id}')">
           <div class="card-img">
             <div class="icon">✦</div>
@@ -316,28 +366,28 @@
             <div class="card-footer">
               <span class="card-read">${p.readTime}</span>
               <div class="card-tags">
-                ${p.tags.slice(0, 2).map(t => `<span class="card-tag">#${t}</span>`).join('')}
+                ${p.tags.slice(0, 2).map(function(t) { return '<span class="card-tag">#' + t + '</span>'; }).join('')}
               </div>
             </div>
           </div>
         </div>
-      `).join('');
+      `; }).join('');
     }
 
     function filterPosts() {
-      const q = document.getElementById('searchInput').value.toLowerCase().trim();
+      var q = document.getElementById('searchInput').value.toLowerCase().trim();
       if (!q) { renderPosts(allPosts); return; }
-      const filtered = allPosts.filter(p =>
-        p.title.toLowerCase().includes(q) ||
-        p.excerpt.toLowerCase().includes(q) ||
-        p.category.toLowerCase().includes(q) ||
-        p.tags.some(t => t.toLowerCase().includes(q))
-      );
+      var filtered = allPosts.filter(function(p) {
+        return p.title.toLowerCase().includes(q) ||
+          p.excerpt.toLowerCase().includes(q) ||
+          p.category.toLowerCase().includes(q) ||
+          p.tags.some(function(t) { return t.toLowerCase().includes(q); });
+      });
       renderPosts(filtered);
     }
 
     function openPost(id) {
-      const post = allPosts.find(p => p.id === id);
+      var post = allPosts.find(function(p) { return p.id === id; });
       if (!post) return;
       document.getElementById('modalCat').textContent = post.category;
       document.getElementById('modalTitle').textContent = post.title;
@@ -345,36 +395,50 @@
       document.getElementById('modalReadTime').textContent = post.readTime;
       document.getElementById('modalAuthor').textContent = post.author;
       document.getElementById('modalBody').innerHTML = post.content.join('');
-      document.getElementById('modalTags').innerHTML = post.tags.map(t => `<span class="modal-tag">#${t}</span>`).join('');
-      const overlay = document.getElementById('modalOverlay');
+      document.getElementById('modalTags').innerHTML = post.tags.map(function(t) { return '<span class="modal-tag">#' + t + '</span>'; }).join('');
+      var overlay = document.getElementById('modalOverlay');
       overlay.classList.add('show');
-      setTimeout(() => overlay.classList.add('open'), 10);
+      setTimeout(function() { overlay.classList.add('open'); }, 10);
       document.body.style.overflow = 'hidden';
+      // Hash-based URL for shareable post links
+      history.pushState(null, '', 'blog.html#post-' + post.id);
     }
 
     function closeModal(e) {
       if (e && e.target !== e.currentTarget) return;
-      const overlay = document.getElementById('modalOverlay');
+      var overlay = document.getElementById('modalOverlay');
       overlay.classList.remove('open');
-      setTimeout(() => {
+      setTimeout(function() {
         overlay.classList.remove('show');
         document.body.style.overflow = '';
+        // Restore clean URL
+        history.pushState(null, '', 'blog.html');
       }, 300);
     }
 
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
-        const overlay = document.getElementById('modalOverlay');
+        var overlay = document.getElementById('modalOverlay');
         if (overlay.classList.contains('show')) closeModal();
       }
     });
 
+    // Open post from URL hash on page load (shareable links)
+    function openPostFromHash() {
+      var match = window.location.hash.match(/^#post-(.+)$/);
+      if (match && allPosts.length) {
+        var found = allPosts.find(function(p) { return p.id === match[1]; });
+        if (found) setTimeout(function() { openPost(found.id); }, 300);
+      }
+    }
+
     fetch('assets/data/posts.json')
-      .then(r => r.json())
-      .then(posts => {
+      .then(function(r) { return r.json(); })
+      .then(function(posts) {
         allPosts = posts;
         renderPosts(posts);
-        var articleSchemas = posts.map(function(p, i) {
+        openPostFromHash();
+        var articleSchemas = posts.map(function(p) {
           return {
             "@context": "https://schema.org",
             "@type": "Article",
@@ -406,7 +470,9 @@
         script.textContent = JSON.stringify(articleSchemas);
         document.head.appendChild(script);
       })
-      .catch(() => {
+      .catch(function() {
+        var spinner = document.getElementById('blogSpinner');
+        if (spinner) spinner.style.display = 'none';
         document.getElementById('blogGrid').innerHTML = '<div class="empty-state"><div class="icon">⚠️</div><h3>Unable to load posts</h3><p>Please try again later.</p></div>';
       });
   </script>

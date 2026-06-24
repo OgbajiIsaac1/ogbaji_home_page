@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initContactForm();
     initCounterAnimations();
     initSmoothScrolling();
+    initBackToTop();
 });
 
 // Mobile Menu Toggle
@@ -430,6 +431,29 @@ function initSmoothScrolling() {
                 });
             }
         });
+    });
+}
+
+// Back to Top Button
+function initBackToTop() {
+    var btn = document.getElementById('back-to-top');
+    if (!btn) {
+        btn = document.createElement('button');
+        btn.id = 'back-to-top';
+        btn.className = 'back-to-top';
+        btn.setAttribute('aria-label', 'Back to top');
+        btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg>';
+        document.body.appendChild(btn);
+        btn.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 400) {
+            btn.classList.add('visible');
+        } else {
+            btn.classList.remove('visible');
+        }
     });
 }
 
