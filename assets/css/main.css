@@ -501,7 +501,77 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 4px 16px rgba(212,175,55,0.15);
 }
 
-/* ====== 12. BLOG LOADING SPINNER ====== */
+/* ====== 12. WHATSAPP FLOATING BUTTON ====== */
+.whatsapp-float {
+  position: fixed;
+  bottom: 5rem;
+  right: 1.5rem;
+  width: 56px;
+  height: 56px;
+  background: #25D366;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+  z-index: 999;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 28px rgba(37,211,102,0.5);
+  color: #fff;
+}
+[data-theme="dark"] .whatsapp-float {
+  box-shadow: 0 4px 20px rgba(37,211,102,0.25);
+}
+
+/* ====== 13. EXIT-INTENT POPUP ====== */
+.exit-intent-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+.exit-intent-overlay.visible { display: flex; }
+.exit-intent-modal {
+  background: #fff;
+  border-radius: 1.25rem;
+  max-width: 420px;
+  width: 100%;
+  padding: 2.5rem;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.2);
+}
+[data-theme="dark"] .exit-intent-modal {
+  background: #1e293b;
+}
+[data-theme="dark"] .exit-intent-modal h3 { color: #f1f5f9; }
+[data-theme="dark"] .exit-intent-modal p { color: #94a3b8; }
+.exit-intent-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.75rem;
+  color: #9ca3af;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  transition: color 0.2s;
+}
+.exit-intent-close:hover { color: #374151; }
+
+/* ====== 14. BLOG LOADING SPINNER ====== */
 .blog-spinner {
   display: flex;
   flex-direction: column;

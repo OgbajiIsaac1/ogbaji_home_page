@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Admin | Ogbaji's Expert Solutions</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#1a2332">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <style>
+    body { background: #f1f5f9; }
+    .admin-wrap { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+    .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label { display: block; font-weight: 600; color: #1a2332; margin-bottom: 0.4rem; font-size: 0.9rem; }
+    .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 0.6rem 0.8rem; border: 1px solid #d1d5db; border-radius: 0.5rem; font-size: 0.9rem; font-family: inherit; }
+    .form-group input:focus, .form-group textarea:focus { outline: none; border-color: #d4af37; box-shadow: 0 0 0 3px rgba(212,175,55,0.1); }
+    .form-group textarea { min-height: 80px; resize: vertical; }
+    .form-group textarea.content-editor { min-height: 200px; font-family: 'Courier New', monospace; font-size: 0.82rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+    .post-list { background: #fff; border-radius: 0.75rem; box-shadow: 0 1px 4px rgba(0,0,0,0.06); overflow: hidden; margin-bottom: 2rem; }
+    .post-item { display: flex; justify-content: space-between; align-items: center; padding: 0.9rem 1.25rem; border-bottom: 1px solid #f0f0f0; cursor: pointer; transition: background 0.2s; }
+    .post-item:hover { background: #fafafa; }
+    .post-item:last-child { border-bottom: none; }
+    .post-item .title { font-weight: 600; color: #1a2332; }
+    .post-item .meta { font-size: 0.78rem; color: #6b7280; }
+    .post-item .actions { display: flex; gap: 0.5rem; }
+    .post-item .actions button { padding: 0.25rem 0.6rem; border-radius: 0.35rem; border: none; font-size: 0.78rem; cursor: pointer; }
+    .btn-edit { background: #dbeafe; color: #2563eb; }
+    .btn-del { background: #fee2e2; color: #dc2626; }
+    .btn-add { background: #d4af37; color: #fff; padding: 0.6rem 1.25rem; border: none; border-radius: 0.5rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+    .btn-add:hover { background: #b8962e; }
+    .btn-save { background: #10b981; color: #fff; padding: 0.7rem 1.5rem; border: none; border-radius: 0.5rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+    .btn-save:hover { background: #059669; }
+    .btn-export { background: #1a2332; color: #fff; padding: 0.5rem 1rem; border: none; border-radius: 0.5rem; font-size: 0.85rem; cursor: pointer; transition: background 0.2s; }
+    .btn-export:hover { background: #2c3e50; }
+    .editor-panel { background: #fff; border-radius: 0.75rem; box-shadow: 0 1px 4px rgba(0,0,0,0.06); padding: 1.5rem; margin-bottom: 2rem; display: none; }
+    .editor-panel.open { display: block; }
+    .toast { position: fixed; bottom: 2rem; right: 2rem; background: #1a2332; color: #fff; padding: 0.8rem 1.5rem; border-radius: 0.5rem; font-size: 0.9rem; box-shadow: 0 4px 20px rgba(0,0,0,0.2); opacity: 0; transform: translateY(10px); transition: all 0.3s; z-index: 9999; }
+    .toast.show { opacity: 1; transform: translateY(0); }
+    .output-area { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; font-family: 'Courier New', monospace; font-size: 0.78rem; white-space: pre-wrap; max-height: 300px; overflow-y: auto; margin-top: 1rem; display: none; }
+    .output-area.open { display: block; }
+    .empty-state { text-align: center; padding: 3rem 1rem; color: #6b7280; }
+    .tag-group { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.4rem; }
+    .tag-group .tag { display: inline-flex; align-items: center; gap: 0.3rem; background: #f0fdf4; color: #166534; font-size: 0.78rem; padding: 0.2rem 0.5rem; border-radius: 0.3rem; }
+    .tag-group .tag button { background: none; border: none; color: #991b1b; cursor: pointer; font-size: 0.85rem; padding: 0; line-height: 1; }
+  </style>
+</head>
+<body class="font-body">
+  <div class="admin-wrap">
+    <div class="admin-header">
+      <div>
+        <h1 class="text-3xl font-display font-bold text-primary">Blog Admin</h1>
+        <p class="text-sm text-gray-500">Manage your blog posts. Changes are saved to your browser — copy the JSON output to update <code>assets/data/posts.json</code>.</p>
+      </div>
+      <div class="flex gap-2">
+        <button class="btn-export" onclick="exportJSON()">Export JSON</button>
+        <button class="btn-add" onclick="newPost()">+ New Post</button>
+      </div>
+    </div>
+
+    <div class="post-list" id="postList"></div>
+
+    <div class="editor-panel" id="editorPanel">
+      <h2 class="text-xl font-display font-bold text-primary mb-4" id="editorTitle">New Post</h2>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="postId">ID</label>
+          <input id="postId" placeholder="e.g. 4">
+        </div>
+        <div class="form-group">
+          <label for="postCategory">Category</label>
+          <input id="postCategory" placeholder="e.g. Industry Insights">
+        </div>
+        <div class="form-group">
+          <label for="postDate">Date</label>
+          <input id="postDate" type="date">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="postTitle">Title</label>
+        <input id="postTitle" placeholder="Post title">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="postAuthor">Author</label>
+          <input id="postAuthor" placeholder="Isaac Ogbaji">
+        </div>
+        <div class="form-group">
+          <label for="postReadTime">Read Time</label>
+          <input id="postReadTime" placeholder="5 min read">
+        </div>
+        <div class="form-group">
+          <label for="postImage">Image URL (optional)</label>
+          <input id="postImage" placeholder="assets/images/post.jpg">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="postExcerpt">Excerpt</label>
+        <textarea id="postExcerpt" rows="2" placeholder="Brief description for the blog card..."></textarea>
+      </div>
+      <div class="form-group">
+        <label>Tags <span class="text-gray-400 text-xs">(comma-separated)</span></label>
+        <input id="postTags" placeholder="digital strategy, AI, transformation">
+      </div>
+      <div class="form-group">
+        <label>Content (HTML) <span class="text-gray-400 text-xs">— each paragraph as a separate entry in the JSON array</span></label>
+        <div id="contentBlocks" class="space-y-2"></div>
+        <button class="text-sm text-secondary hover:text-yellow-600 mt-2 font-medium" onclick="addContentBlock()">+ Add paragraph</button>
+      </div>
+      <div class="flex gap-3 mt-6">
+        <button class="btn-save" onclick="savePost()">Save Post</button>
+        <button class="text-sm text-gray-500 hover:text-gray-700 font-medium" onclick="closeEditor()">Cancel</button>
+      </div>
+    </div>
+
+    <div class="output-area" id="outputArea"></div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    var posts = [];
+    var editingIndex = -1;
+
+    function toast(msg) {
+      var t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      clearTimeout(t._timer);
+      t._timer = setTimeout(function() { t.classList.remove('show'); }, 2500);
+    }
+
+    function loadPosts() {
+      var saved = localStorage.getItem('blogPosts');
+      if (saved) { posts = JSON.parse(saved); renderList(); return; }
+      fetch('assets/data/posts.json')
+        .then(function(r) { return r.json(); })
+        .then(function(data) { posts = data; localStorage.setItem('blogPosts', JSON.stringify(posts)); renderList(); })
+        .catch(function() { posts = []; renderList(); });
+    }
+
+    function renderList() {
+      var list = document.getElementById('postList');
+      if (!posts.length) { list.innerHTML = '<div class="empty-state"><p>No posts yet. Click "+ New Post" to create one.</p></div>'; return; }
+      list.innerHTML = posts.map(function(p, i) {
+        return '<div class="post-item">' +
+          '<div><div class="title">' + p.title + '</div><div class="meta">' + p.category + ' &middot; ' + p.date + ' &middot; ' + p.author + '</div></div>' +
+          '<div class="actions"><button class="btn-edit" onclick="editPost(' + i + ')">Edit</button><button class="btn-del" onclick="deletePost(' + i + ')">Del</button></div>' +
+          '</div>';
+      }).join('');
+    }
+
+    function newPost() {
+      editingIndex = -1;
+      document.getElementById('editorTitle').textContent = 'New Post';
+      ['postId','postCategory','postDate','postTitle','postAuthor','postReadTime','postImage','postExcerpt','postTags'].forEach(function(id) { document.getElementById(id).value = ''; });
+      document.getElementById('postDate').value = new Date().toISOString().slice(0, 10);
+      document.getElementById('contentBlocks').innerHTML = '';
+      addContentBlock();
+      document.getElementById('editorPanel').classList.add('open');
+      document.getElementById('editorPanel').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function editPost(i) {
+      editingIndex = i;
+      var p = posts[i];
+      document.getElementById('editorTitle').textContent = 'Edit Post';
+      document.getElementById('postId').value = p.id;
+      document.getElementById('postCategory').value = p.category;
+      document.getElementById('postDate').value = p.date;
+      document.getElementById('postTitle').value = p.title;
+      document.getElementById('postAuthor').value = p.author;
+      document.getElementById('postReadTime').value = p.readTime;
+      document.getElementById('postImage').value = p.image || '';
+      document.getElementById('postExcerpt').value = p.excerpt;
+      document.getElementById('postTags').value = (p.tags || []).join(', ');
+      document.getElementById('contentBlocks').innerHTML = '';
+      (p.content || ['']).forEach(function(block) { addContentBlock(block); });
+      document.getElementById('editorPanel').classList.add('open');
+      document.getElementById('editorPanel').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function deletePost(i) {
+      if (!confirm('Delete "' + posts[i].title + '"?')) return;
+      posts.splice(i, 1);
+      localStorage.setItem('blogPosts', JSON.stringify(posts));
+      renderList();
+      toast('Post deleted');
+    }
+
+    function addContentBlock(value) {
+      if (value === undefined) value = '';
+      var div = document.createElement('div');
+      div.className = 'flex gap-2 items-start';
+      div.innerHTML = '<textarea class="content-editor flex-1" rows="3" placeholder="<p>HTML content...</p>">' + value.replace(/</g, '&lt;') + '</textarea><button class="text-red-500 hover:text-red-700 text-lg font-bold mt-1" onclick="this.parentElement.remove()" title="Remove">&times;</button>';
+      document.getElementById('contentBlocks').appendChild(div);
+    }
+
+    function savePost() {
+      var post = {
+        id: document.getElementById('postId').value.trim(),
+        title: document.getElementById('postTitle').value.trim(),
+        category: document.getElementById('postCategory').value.trim(),
+        date: document.getElementById('postDate').value,
+        author: document.getElementById('postAuthor').value.trim(),
+        readTime: document.getElementById('postReadTime').value.trim(),
+        image: document.getElementById('postImage').value.trim(),
+        excerpt: document.getElementById('postExcerpt').value.trim(),
+        content: Array.from(document.getElementById('contentBlocks').querySelectorAll('textarea')).map(function(t) { return t.value; }).filter(function(v) { return v.trim(); }),
+        tags: document.getElementById('postTags').value.split(',').map(function(t) { return t.trim(); }).filter(function(t) { return t; })
+      };
+      if (!post.id || !post.title) { toast('ID and Title are required'); return; }
+      if (editingIndex >= 0) { posts[editingIndex] = post; }
+      else {
+        var exists = posts.some(function(p) { return p.id === post.id; });
+        if (exists) { toast('A post with this ID already exists'); return; }
+        posts.push(post);
+      }
+      localStorage.setItem('blogPosts', JSON.stringify(posts));
+      renderList();
+      closeEditor();
+      toast('Post saved! Copy the JSON below and update assets/data/posts.json');
+      exportJSON();
+    }
+
+    function closeEditor() {
+      document.getElementById('editorPanel').classList.remove('open');
+    }
+
+    function exportJSON() {
+      var output = document.getElementById('outputArea');
+      output.textContent = JSON.stringify(posts, null, 2);
+      output.classList.add('open');
+      var range = document.createRange();
+      range.selectNode(output);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+      try { document.execCommand('copy'); toast('JSON copied to clipboard!'); }
+      catch(e) { toast('Select all and copy manually'); }
+      window.getSelection().removeAllRanges();
+      output.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    loadPosts();
+  </script>
+</body>
+</html>

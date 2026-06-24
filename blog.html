@@ -342,7 +342,7 @@
       }
       empty.style.display = 'none';
       grid.innerHTML = posts.map(function(p) { return `
-        <div class="blog-card" onclick="openPost('${p.id}')">
+        <a href="blog-post.html?id=${p.id}" class="blog-card no-underline text-inherit" style="display:flex;flex-direction:column">
           <div class="card-img">
             <div class="icon">✦</div>
           </div>
@@ -360,7 +360,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </a>
       `; }).join('');
     }
 
